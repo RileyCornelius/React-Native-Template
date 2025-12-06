@@ -7,7 +7,8 @@
     "scheme": "expo-stack-unistyle",
     "platforms": [
       "ios",
-      "android"
+      "android",
+      "web"
     ],
     "web": {
       "bundler": "metro",

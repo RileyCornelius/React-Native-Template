@@ -6,11 +6,11 @@ export const sharedColors = {
 } as const;
 
 export const lightColors = {
-  typography: '#ffffff',
-  background: '#000000',
+  typography: '#000000',
+  background: '#ffffff',
 } as const;
 
 export const darkColors = {
-  typography: '#000000',
-  background: '#ffffff',
+  typography: '#ffffff',
+  background: '#000000',
 } as const;
