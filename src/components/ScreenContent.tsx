@@ -27,7 +27,7 @@ const styles = StyleSheet.create((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 24,
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.background,
   },
   separator: {
     height: 1,

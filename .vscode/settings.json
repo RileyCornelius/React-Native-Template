@@ -1,0 +1,16 @@
+{
+  "prettier.ignorePath": ".gitignore",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "eslint.format.enable": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript][typescript][typescriptreact][json][jsonc]": {
+    "editor.codeActionsOnSave": ["source.addMissingImports", "source.fixAll.eslint"]
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+  "editor.colorDecorators": true,
+  "color-highlight.markerType": "dot-before",
+  "cSpell.words": ["mmkv", "moti"]
+}
