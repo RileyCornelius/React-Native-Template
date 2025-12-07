@@ -11,6 +11,7 @@
     ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ],
   "editor.colorDecorators": true,
+  "color-highlight.languages": ["javascript", "typescript", "typescriptreact", "javascriptreact"],
   "color-highlight.markerType": "dot-before",
   "cSpell.words": ["mmkv", "moti"]
 }

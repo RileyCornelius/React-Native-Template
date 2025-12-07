@@ -1,21 +1,37 @@
-import { Stack, Link } from 'expo-router';
+import { Stack, Link, useRouter } from 'expo-router';
 
 import { StyleSheet } from 'react-native-unistyles';
 import { View } from 'react-native';
 
-import { Button } from '@/components/Button';
+// import { Button } from '@/components/Button';
+import { Button } from '@/components/craft-ui/Button';
 import { Container } from '@/components/Container';
 import { ScreenContent } from '@/components/ScreenContent';
 
 export default function Home() {
+  const router = useRouter();
+
+  function handlePress() {
+    router.push({
+      pathname: '/details',
+      params: { name: 'Dan' },
+    });
+  }
+
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: 'Home' }} />
       <Container>
         <ScreenContent path="app/index.tsx" title="Home"></ScreenContent>
-        <Link href={{ pathname: '/details', params: { name: 'Dan' } }} asChild>
+        {/* <Link href={{ pathname: '/details', params: { name: 'Dan' } }} asChild>
           <Button title="Show Details" style={styles.button} />
-        </Link>
+        </Link> */}
+
+        <View style={styles.button}>
+          <Button onPress={handlePress} size="regular" variant="primary">
+            Click me
+          </Button>
+        </View>
       </Container>
     </View>
   );
@@ -27,6 +43,6 @@ const styles = StyleSheet.create((theme) => ({
     backgroundColor: 'white',
   },
   button: {
-    marginHorizontal: theme.margins.xl,
+    marginHorizontal: theme.spacing.xlarge,
   },
 }));

@@ -34,7 +34,7 @@ const styles = StyleSheet.create((theme) => ({
     shadowRadius: 3.84,
   },
   buttonText: {
-    color: theme.colors.background,
+    color: theme.colors.baseLight,
     fontSize: 16,
     fontWeight: '600',
     textAlign: 'center',
