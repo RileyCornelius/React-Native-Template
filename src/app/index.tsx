@@ -1,11 +1,11 @@
-import { Stack, Link, useRouter } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 
-import { StyleSheet } from 'react-native-unistyles';
 import { View } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 // import { Button } from '@/components/Button';
-import { Button } from '@/components/craft-ui/Button';
 import { Container } from '@/components/Container';
+import { Button } from '@/components/craft-ui/Button';
 import { ScreenContent } from '@/components/ScreenContent';
 
 export default function Home() {

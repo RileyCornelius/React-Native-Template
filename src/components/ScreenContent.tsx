@@ -16,6 +16,8 @@ export const ScreenContent = ({ title, path, children }: ScreenContentProps) => 
       <Text style={styles.title}>{title}</Text>
       <View style={styles.separator} />
       <EditScreenInfo path={path} />
+      <Text style={styles.interBlack}>Inter Black</Text>
+      <Text style={styles.spaceMono}>Space Mono</Text>
       {children}
     </View>
   );
@@ -38,6 +40,19 @@ const styles = StyleSheet.create((theme) => ({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: theme.colors.typography,
+  },
+  interBlack: {
+    fontFamily: 'Inter_200ExtraLight',
+    // fontWeight: 'bold',
+    fontSize: 18,
+    marginTop: 20,
+    color: theme.colors.typography,
+  },
+  spaceMono: {
+    fontFamily: 'SpaceMono-Regular',
+    fontSize: 18,
+    // fontWeight: 'bold',
     color: theme.colors.typography,
   },
 }));

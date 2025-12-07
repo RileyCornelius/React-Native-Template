@@ -13,7 +13,8 @@
       "favicon": "./assets/images/favicon.png"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.x5and5.expostackunistyle"
     },
     "android": {
       "adaptiveIcon": {
@@ -35,6 +36,15 @@
           "dark": {
             "backgroundColor": "#000000"
           }
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "node_modules/@expo-google-fonts/inter/200ExtraLight/Inter_200ExtraLight.ttf",
+            "./assets/fonts/SpaceMono-Regular.ttf"
+          ]
         }
       ]
     ],
