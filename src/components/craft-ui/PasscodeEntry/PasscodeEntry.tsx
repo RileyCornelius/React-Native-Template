@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { type Theme } from '../../../../craftrn-ui/themes/config';
+import { type Theme } from '@/themes/theme';
 import { Text } from '../Text';
 import { Backspace } from './Backspace';
 import { Key } from './Key';

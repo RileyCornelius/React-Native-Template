@@ -7,7 +7,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { type Theme } from '../../../../craftrn-ui/themes/config';
+import { type Theme } from '@/themes/theme';
 
 const createKeyTokens = (theme: Theme) => {
   return {

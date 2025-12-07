@@ -58,19 +58,14 @@ export const ListItem = ({
 }: ListItemProps) => {
   return (
     <>
-      <Pressable
-        onPress={onPress}
-        role={!!onPress ? 'button' : 'listitem'}
-        {...accessibilityProps}
-      >
+      <Pressable onPress={onPress} role={!!onPress ? 'button' : 'listitem'} {...accessibilityProps}>
         {({ pressed }) => (
           <View
             style={[
               styles.itemContainer,
               !!onPress && pressed && styles.itemContainerPressed,
               StyleSheet.flatten(style),
-            ]}
-          >
+            ]}>
             {itemLeft}
             <View style={styles.itemContent}>
               {textAbove && (
@@ -80,11 +75,8 @@ export const ListItem = ({
               )}
               <Text
                 variant="body2"
-                color={
-                  variant === 'danger' ? 'sentimentNegative' : 'contentPrimary'
-                }
-                style={styles.text}
-              >
+                color={variant === 'danger' ? 'sentimentNegative' : 'contentPrimary'}
+                style={styles.text}>
                 {text}
               </Text>
               {textBelow && (
@@ -102,7 +94,7 @@ export const ListItem = ({
   );
 };
 
-const styles = StyleSheet.create(theme => ({
+const styles = StyleSheet.create((theme) => ({
   itemContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -121,5 +113,6 @@ const styles = StyleSheet.create(theme => ({
   },
   text: {
     fontWeight: '500',
+    color: theme.colors.contentPrimary,
   },
 }));
