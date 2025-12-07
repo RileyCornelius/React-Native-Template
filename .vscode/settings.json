@@ -7,11 +7,8 @@
   "[javascript][typescript][typescriptreact][json][jsonc]": {
     "editor.codeActionsOnSave": ["source.addMissingImports", "source.fixAll.eslint"]
   },
-  "tailwindCSS.experimental.classRegex": [
-    ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
-  ],
   "editor.colorDecorators": true,
-  "color-highlight.languages": ["javascript", "typescript"],
+  "color-highlight.languages": ["javascript", "typescript", "json", "jsonc"],
   "color-highlight.markerType": "dot-before",
   "cSpell.words": ["mmkv", "moti"]
 }
