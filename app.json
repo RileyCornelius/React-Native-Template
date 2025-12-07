@@ -25,6 +25,7 @@
       "package": "com.x5and5.expostackunistyle"
     },
     "plugins": [
+      "./fix.js",
       "expo-router",
       [
         "expo-splash-screen",
