@@ -5,11 +5,8 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import {
-  StyleSheet,
-  UnistylesRuntime,
-  useUnistyles,
-} from 'react-native-unistyles';
+import { StyleSheet, UnistylesRuntime, useUnistyles } from 'react-native-unistyles';
+
 import { PressableScale, type AnimationConfig } from '../PressableScale';
 
 /**
@@ -19,20 +16,14 @@ const hexToGrayscale = (hex: string): string =>
   `#${Math.round(
     0.299 * parseInt(hex.slice(1, 3), 16) +
       0.587 * parseInt(hex.slice(3, 5), 16) +
-      0.114 * parseInt(hex.slice(5, 7), 16),
+      0.114 * parseInt(hex.slice(5, 7), 16)
   )
     .toString(16)
     .padStart(2, '0')
     .repeat(3)}${hex.length === 9 ? hex.slice(7) : ''}`;
 
 type Size = 'large' | 'regular' | 'small';
-type Variant =
-  | 'primary'
-  | 'secondary'
-  | 'tertiary'
-  | 'neutral'
-  | 'neutral-secondary'
-  | 'negative';
+type Variant = 'primary' | 'secondary' | 'tertiary' | 'neutral' | 'neutral-secondary' | 'negative';
 
 const hitSlop = {
   small: { top: 2, bottom: 2, left: 4, right: 4 },
@@ -152,10 +143,10 @@ export const Button = ({
       backgroundColor: interpolateColor(
         pressProgress.value,
         [0, 1],
-        [colorConfig.backgroundUnpressed, colorConfig.backgroundPressed],
+        [colorConfig.backgroundUnpressed, colorConfig.backgroundPressed]
       ),
     }),
-    [colorConfig.backgroundUnpressed, colorConfig.backgroundPressed],
+    [colorConfig.backgroundUnpressed, colorConfig.backgroundPressed]
   );
 
   const textStyle = useAnimatedStyle(
@@ -163,10 +154,10 @@ export const Button = ({
       color: interpolateColor(
         pressProgress.value,
         [0, 1],
-        [colorConfig.textUnpressed, colorConfig.textPressed],
+        [colorConfig.textUnpressed, colorConfig.textPressed]
       ),
     }),
-    [colorConfig.textUnpressed, colorConfig.textPressed],
+    [colorConfig.textUnpressed, colorConfig.textPressed]
   );
 
   return (
@@ -177,16 +168,13 @@ export const Button = ({
       role="button"
       animationConfig={animationConfig}
       pressProgress={pressProgress}
-      {...accessibilityProps}
-    >
+      {...accessibilityProps}>
       <Animated.View
         key={`button-bg-${UnistylesRuntime.themeName}`}
-        style={[styles.button({ size, disabled }), backgroundStyle]}
-      >
+        style={[styles.button({ size, disabled }), backgroundStyle]}>
         <Animated.Text
           key={`button-text-${UnistylesRuntime.themeName}`}
-          style={[styles.text({ size }), textStyle]}
-        >
+          style={[styles.text({ size }), textStyle]}>
           {children}
         </Animated.Text>
       </Animated.View>
@@ -194,7 +182,7 @@ export const Button = ({
   );
 };
 
-const styles = StyleSheet.create(theme => ({
+const styles = StyleSheet.create((theme) => ({
   button: ({ size, disabled }: { size: Size; disabled: boolean }) => {
     return {
       justifyContent: 'center',

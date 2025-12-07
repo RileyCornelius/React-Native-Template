@@ -12,6 +12,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { StyleSheet } from 'react-native-unistyles';
+
 import { ButtonRound } from '../ButtonRound';
 import { Text } from '../Text';
 import { Minus } from './Minus';
@@ -72,9 +73,7 @@ export const Counter = ({
   ...accessibilityProps
 }: CounterProps) => {
   const [internalCount, setInternalCount] = useState(
-    value !== undefined
-      ? Math.min(Math.max(value, minValue), maxValue)
-      : minValue,
+    value !== undefined ? Math.min(Math.max(value, minValue), maxValue) : minValue
   );
 
   // Shared values for animation
@@ -93,8 +92,7 @@ export const Counter = ({
 
   const updateCount = useCallback(
     (action: 'increment' | 'decrement') => {
-      const newValue =
-        count + (action === 'increment' ? increment : -increment);
+      const newValue = count + (action === 'increment' ? increment : -increment);
 
       // Determine animation direction: -1 = down, 1 = up
       const direction = action === 'increment' ? -1 : 1;
@@ -117,7 +115,7 @@ export const Counter = ({
       onValueChange(newValue);
       AccessibilityInfo.announceForAccessibility(`${newValue}`);
     },
-    [count, onValueChange, increment, translateY, opacity],
+    [count, onValueChange, increment, translateY, opacity]
   );
 
   const increase = useCallback(() => {
@@ -143,7 +141,7 @@ export const Counter = ({
           break;
       }
     },
-    [increase, decrease],
+    [increase, decrease]
   );
 
   const displayValue = count ? count : emptyLabel;
@@ -175,15 +173,12 @@ export const Counter = ({
         },
       ]}
       onAccessibilityAction={handleAccessibilityAction}
-      {...accessibilityProps}
-    >
+      {...accessibilityProps}>
       <ButtonRound
         onPress={decrease}
         size="small"
         variant="neutral"
-        renderContent={({ iconSize }) => (
-          <Minus color={styles.icon.color} size={iconSize} />
-        )}
+        renderContent={({ iconSize }) => <Minus color={styles.icon.color} size={iconSize} />}
         disabled={!canDecrease}
       />
       <View style={styles.countContainer}>
@@ -195,16 +190,14 @@ export const Counter = ({
         onPress={increase}
         size="small"
         variant="neutral"
-        renderContent={({ iconSize }) => (
-          <Plus color={styles.icon.color} size={iconSize} />
-        )}
+        renderContent={({ iconSize }) => <Plus color={styles.icon.color} size={iconSize} />}
         disabled={!canIncrease}
       />
     </View>
   );
 };
 
-const styles = StyleSheet.create(theme => ({
+const styles = StyleSheet.create((theme) => ({
   container: {
     flexDirection: 'row',
     alignItems: 'center',

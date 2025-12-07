@@ -5,11 +5,8 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import {
-  StyleSheet,
-  UnistylesRuntime,
-  useUnistyles,
-} from 'react-native-unistyles';
+import { StyleSheet, UnistylesRuntime, useUnistyles } from 'react-native-unistyles';
+
 import { PressableScale, type AnimationConfig } from '../PressableScale';
 
 /**
@@ -19,19 +16,14 @@ const hexToGrayscale = (hex: string): string =>
   `#${Math.round(
     0.299 * parseInt(hex.slice(1, 3), 16) +
       0.587 * parseInt(hex.slice(3, 5), 16) +
-      0.114 * parseInt(hex.slice(5, 7), 16),
+      0.114 * parseInt(hex.slice(5, 7), 16)
   )
     .toString(16)
     .padStart(2, '0')
     .repeat(3)}${hex.length === 9 ? hex.slice(7) : ''}`;
 
 type Size = 'large' | 'medium' | 'small';
-type Variant =
-  | 'primary'
-  | 'secondary'
-  | 'neutral'
-  | 'neutral-secondary'
-  | 'reversed';
+type Variant = 'primary' | 'secondary' | 'neutral' | 'neutral-secondary' | 'reversed';
 
 const hitSlop = {
   small: 4,
@@ -60,10 +52,7 @@ type BaseProps = {
    * @param props.iconSize - The suggested size of the icon in pixels, depending on the button size.
    * @param props.iconColor - The appropriate color for the icon based on the button variant.
    */
-  renderContent: (props: {
-    iconSize: number;
-    iconColor: string;
-  }) => ReactElement;
+  renderContent: (props: { iconSize: number; iconColor: string }) => ReactElement;
   /**
    * The size of the button.
    * @default 'medium'
@@ -149,10 +138,10 @@ export const ButtonRound = ({
       backgroundColor: interpolateColor(
         pressProgress.value,
         [0, 1],
-        [colorConfig.backgroundUnpressed, colorConfig.backgroundPressed],
+        [colorConfig.backgroundUnpressed, colorConfig.backgroundPressed]
       ),
     }),
-    [colorConfig.backgroundUnpressed, colorConfig.backgroundPressed],
+    [colorConfig.backgroundUnpressed, colorConfig.backgroundPressed]
   );
 
   return (
@@ -164,12 +153,10 @@ export const ButtonRound = ({
       style={styles.pressable}
       animationConfig={animationConfig}
       pressProgress={pressProgress}
-      {...accessibilityProps}
-    >
+      {...accessibilityProps}>
       <Animated.View
         key={`button-round-${UnistylesRuntime.themeName}`}
-        style={[styles.button({ disabled, size }), backgroundStyle]}
-      >
+        style={[styles.button({ disabled, size }), backgroundStyle]}>
         {renderContent({
           iconSize: iconSize[size],
           iconColor: colorConfig.iconColor,
@@ -179,7 +166,7 @@ export const ButtonRound = ({
   );
 };
 
-const styles = StyleSheet.create(theme => ({
+const styles = StyleSheet.create((theme) => ({
   pressable: {
     alignItems: 'center',
     justifyContent: 'center',

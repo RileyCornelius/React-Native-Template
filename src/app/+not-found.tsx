@@ -1,7 +1,6 @@
-import { Link, Stack } from 'expo-router';
-
-import { StyleSheet } from 'react-native-unistyles';
 import { Text, View } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
+import { Link, Stack } from 'expo-router';
 
 import { Container } from '@/components/Container';
 

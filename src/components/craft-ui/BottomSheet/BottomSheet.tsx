@@ -1,10 +1,4 @@
-import React, {
-  ReactElement,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   AccessibilityInfo,
   AccessibilityProps,
@@ -14,11 +8,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import {
-  Gesture,
-  GestureDetector,
-  GestureHandlerRootView,
-} from 'react-native-gesture-handler';
+import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated, {
   Easing,
   runOnJS,
@@ -126,7 +116,7 @@ export const BottomSheet = ({
   const gestureActive = useSharedValue(false);
   const bottomSheetMaxHeight = useMemo(
     () => Math.max(maxHeight ?? 0, windowHeight),
-    [maxHeight, windowHeight],
+    [maxHeight, windowHeight]
   );
 
   useEffect(() => {
@@ -136,7 +126,7 @@ export const BottomSheet = ({
   }, [visible]);
 
   useEffect(() => {
-    AccessibilityInfo.isScreenReaderEnabled().then(enabled => {
+    AccessibilityInfo.isScreenReaderEnabled().then((enabled) => {
       setIsScreenReaderEnabled(enabled);
     });
   }, []);
@@ -157,7 +147,7 @@ export const BottomSheet = ({
               runOnJS(onClose)();
             }
           }
-        },
+        }
       );
     }
   }, [visible, translateY, overlayOpacity, contentHeight, onClose]);
@@ -173,22 +163,21 @@ export const BottomSheet = ({
       startY.value = translateY.value;
       gestureActive.value = true;
     })
-    .onUpdate(event => {
+    .onUpdate((event) => {
       const newTranslateY = startY.value + event.translationY;
       if (newTranslateY >= 0) {
         translateY.value = newTranslateY;
         overlayOpacity.value = withTiming(
           0.5 * (1 - Math.min(newTranslateY / (contentHeight ?? 200), 1)),
-          animationConfig.overlayDrag,
+          animationConfig.overlayDrag
         );
       }
     })
-    .onEnd(event => {
+    .onEnd((event) => {
       gestureActive.value = false;
 
       // Check if should close by velocity or distance
-      const shouldClose =
-        event.velocityY > 500 || event.translationY > closeGestureThreshold;
+      const shouldClose = event.velocityY > 500 || event.translationY > closeGestureThreshold;
 
       if (shouldClose) {
         // Use spring with high damping to avoid bounce, but respect velocity
@@ -200,7 +189,7 @@ export const BottomSheet = ({
           },
           () => {
             runOnJS(onRequestClose)();
-          },
+          }
         );
         overlayOpacity.value = withTiming(0, animationConfig.overlayFadeOut);
       } else {
@@ -226,7 +215,7 @@ export const BottomSheet = ({
         setContentHeight(height);
       }
     },
-    [contentHeight, translateY],
+    [contentHeight, translateY]
   );
 
   return (
@@ -235,21 +224,14 @@ export const BottomSheet = ({
       transparent={true}
       visible={showModal}
       onRequestClose={onRequestClose}
-      animationType="none"
-    >
+      animationType="none">
       <GestureHandlerRootView>
         <GestureDetector gesture={gesture}>
           <View style={styles.container}>
             <Animated.View
-              style={[
-                styles.overlay,
-                StyleSheet.absoluteFillObject,
-                overlayAnimatedStyle,
-              ]}
-            >
+              style={[styles.overlay, StyleSheet.absoluteFillObject, overlayAnimatedStyle]}>
               <TouchableWithoutFeedback
-                onPress={enableOverlayTapToClose ? onRequestClose : undefined}
-              >
+                onPress={enableOverlayTapToClose ? onRequestClose : undefined}>
                 <View style={styles.overlayContent} />
               </TouchableWithoutFeedback>
             </Animated.View>
@@ -266,8 +248,7 @@ export const BottomSheet = ({
               accessibilityLiveRegion="polite"
               accessibilityViewIsModal
               onAccessibilityEscape={onRequestClose}
-              {...accessibilityProps}
-            >
+              {...accessibilityProps}>
               <View style={styles.contentWrapper}>
                 {showHandleBar && (
                   <View style={styles.handleBarContainer}>
@@ -283,9 +264,7 @@ export const BottomSheet = ({
                           }
                         ).style,
                         {
-                          paddingTop: showHandleBar
-                            ? theme.spacing.xlarge
-                            : theme.spacing.large,
+                          paddingTop: showHandleBar ? theme.spacing.xlarge : theme.spacing.large,
                         },
                       ],
                     } as Partial<unknown>)
@@ -299,7 +278,7 @@ export const BottomSheet = ({
   );
 };
 
-const styles = StyleSheet.create(theme => ({
+const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1,
   },

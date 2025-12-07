@@ -1,8 +1,8 @@
-import { DarkTheme, DefaultTheme, ThemeProvider, useTheme } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet } from 'react-native-unistyles';
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { DarkTheme, DefaultTheme, ThemeProvider, useTheme } from '@react-navigation/native';
 
 function App() {
   return (

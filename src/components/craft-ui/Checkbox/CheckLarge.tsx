@@ -13,8 +13,7 @@ export const CheckLarge = ({ color, size = 20, ...props }: Props) => (
     height={size}
     viewBox="0 0 20 20"
     preserveAspectRatio="xMidYMid meet"
-    {...props}
-  >
+    {...props}>
     <Path
       fill={color}
       stroke={color}

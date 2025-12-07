@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, TextInput } from 'react-native';
 import Animated, {
   Easing,
@@ -15,6 +9,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { StyleSheet } from 'react-native-unistyles';
+
 import { Text } from '../Text';
 
 const config = {
@@ -62,7 +57,7 @@ export const InputOTP = ({ onChange, error = false }: Props) => {
         withTiming(offset, { duration }),
         withTiming(-offset, { duration }),
         withTiming(offset, { duration }),
-        withTiming(0, { duration }),
+        withTiming(0, { duration })
       );
     }
   }, [error, translateX]);
@@ -71,19 +66,13 @@ export const InputOTP = ({ onChange, error = false }: Props) => {
     (text: string) => {
       const numericText = text.replace(/[^0-9]/g, '').slice(0, config.length);
 
-      const isPasted =
-        previousCodeLengthRef.current === 0 &&
-        numericText.length === config.length;
+      const isPasted = previousCodeLengthRef.current === 0 && numericText.length === config.length;
       setShouldAnimate(!isPasted);
 
       previousCodeLengthRef.current = numericText.length;
       setCode(numericText);
 
-      setFocusedIndex(
-        numericText.length < config.length
-          ? numericText.length
-          : config.length - 1,
-      );
+      setFocusedIndex(numericText.length < config.length ? numericText.length : config.length - 1);
 
       if (numericText.length === config.length) {
         onChange(numericText);
@@ -92,7 +81,7 @@ export const InputOTP = ({ onChange, error = false }: Props) => {
         onChange('');
       }
     },
-    [onChange],
+    [onChange]
   );
 
   const handleFocus = useCallback(() => {
@@ -102,9 +91,7 @@ export const InputOTP = ({ onChange, error = false }: Props) => {
       setFocusedIndex(0);
       onChange('');
     } else {
-      setFocusedIndex(
-        code.length < config.length ? code.length : config.length - 1,
-      );
+      setFocusedIndex(code.length < config.length ? code.length : config.length - 1);
     }
   }, [code.length, onChange]);
 
@@ -136,26 +123,18 @@ export const InputOTP = ({ onChange, error = false }: Props) => {
                 styles.codeInputItem,
                 isFocused && styles.focusedInput,
                 error && styles.errorInput,
-              ]}
-            >
+              ]}>
               {char && shouldAnimate ? (
                 <Animated.View
-                  entering={FadeInDown.duration(
-                    animationConfig.fadeIn.duration,
-                  ).easing(animationConfig.fadeIn.easing)}
-                >
-                  <Text
-                    variant="heading3"
-                    accessibilityLabel={`${index + 1} of ${config.length}`}
-                  >
+                  entering={FadeInDown.duration(animationConfig.fadeIn.duration).easing(
+                    animationConfig.fadeIn.easing
+                  )}>
+                  <Text variant="heading3" accessibilityLabel={`${index + 1} of ${config.length}`}>
                     {char}
                   </Text>
                 </Animated.View>
               ) : (
-                <Text
-                  variant="heading3"
-                  accessibilityLabel={`${index + 1} of ${config.length}`}
-                >
+                <Text variant="heading3" accessibilityLabel={`${index + 1} of ${config.length}`}>
                   {char}
                 </Text>
               )}
@@ -171,7 +150,7 @@ export const InputOTP = ({ onChange, error = false }: Props) => {
       styles.codeInputItem,
       styles.focusedInput,
       styles.errorInput,
-    ],
+    ]
   );
 
   return (
@@ -196,7 +175,7 @@ export const InputOTP = ({ onChange, error = false }: Props) => {
   );
 };
 
-const styles = StyleSheet.create(theme => ({
+const styles = StyleSheet.create((theme) => ({
   container: {
     flexDirection: 'row',
     gap: theme.spacing.xsmall,

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 import { StyleSheet } from 'react-native-unistyles';
+
 import { breakpoints } from './breakpoints';
 import { lightTheme, darkTheme } from './theme';
 

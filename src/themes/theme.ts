@@ -1,6 +1,6 @@
 import { colors } from './colors';
-import { borderRadius } from './radius';
 import { fontSizes, textVariants } from './fonts';
+import { borderRadius } from './radius';
 import { spacing } from './spacing';
 
 const baseTheme = {

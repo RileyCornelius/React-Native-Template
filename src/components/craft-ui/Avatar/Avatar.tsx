@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import {
-  AccessibilityProps,
-  Image,
-  ImageSourcePropType,
-  View,
-} from 'react-native';
+import { AccessibilityProps, Image, ImageSourcePropType, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
+
 import { Text } from '../Text';
 
 /**
@@ -71,21 +67,17 @@ export const Avatar = ({
 
   const hasValidSource =
     source &&
-    (typeof source === 'number' ||
-      !('uri' in source) ||
-      (source.uri && source.uri.trim() !== ''));
+    (typeof source === 'number' || !('uri' in source) || (source.uri && source.uri.trim() !== ''));
 
   return (
     <View
       style={[
         styles.container({ size }),
-        (!hasValidSource || !imageLoaded) &&
-          styles.containerColor({ color: fallbackColor }),
+        (!hasValidSource || !imageLoaded) && styles.containerColor({ color: fallbackColor }),
       ]}
       accessible
       accessibilityHint={showOnlineIndicator ? 'online' : undefined}
-      {...accessibilityProps}
-    >
+      {...accessibilityProps}>
       <View style={styles.fallbackContainer}>
         {(!hasValidSource || !imageLoaded) && (
           <Text variant={textVariantBySize[size]} style={styles.text}>
@@ -106,7 +98,7 @@ export const Avatar = ({
   );
 };
 
-const styles = StyleSheet.create(theme => ({
+const styles = StyleSheet.create((theme) => ({
   container: (params: { size: 'small' | 'medium' | 'large' }) => ({
     alignItems: 'center',
     justifyContent: 'center',

@@ -1,11 +1,10 @@
-import { StyleSheet } from 'react-native-unistyles';
 import { View } from 'react-native';
-
+import { StyleSheet } from 'react-native-unistyles';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
 import { Container } from '@/components/Container';
-import { ScreenContent } from '@/components/ScreenContent';
 import { ListItem } from '@/components/craft-ui/ListItem';
+import { ScreenContent } from '@/components/ScreenContent';
 
 export default function Details() {
   const { name } = useLocalSearchParams();

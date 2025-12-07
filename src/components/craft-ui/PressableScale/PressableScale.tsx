@@ -78,7 +78,7 @@ export const PressableScale = ({
       });
       onPressIn?.(event);
     },
-    [disabled, config.durationIn, config.easing, pressProgress, onPressIn],
+    [disabled, config.durationIn, config.easing, pressProgress, onPressIn]
   );
 
   const handlePressOut = useCallback(
@@ -90,7 +90,7 @@ export const PressableScale = ({
       });
       onPressOut?.(event);
     },
-    [disabled, config.durationOut, config.easing, pressProgress, onPressOut],
+    [disabled, config.durationOut, config.easing, pressProgress, onPressOut]
   );
 
   const scaleStyle = useAnimatedStyle(() => {
@@ -107,8 +107,7 @@ export const PressableScale = ({
         disabled={disabled}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
-        {...pressableProps}
-      >
+        {...pressableProps}>
         {children}
       </Pressable>
     </Animated.View>

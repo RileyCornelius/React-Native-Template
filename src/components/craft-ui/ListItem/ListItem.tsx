@@ -1,6 +1,7 @@
 import React from 'react';
 import { AccessibilityProps, Pressable, View, ViewProps } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
+
 import { Divider } from '../Divider';
 import { Text } from '../Text';
 
