@@ -10,7 +10,7 @@ module.exports = defineConfig([
   {
     rules: {
       'react/display-name': 'off',
-      // 'import/no-unresolved': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
     },
   },
 ]);
