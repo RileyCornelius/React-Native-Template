@@ -4,5 +4,6 @@ module.exports = {
   singleQuote: true,
   bracketSameLine: true,
   trailingComma: 'es5',
-  plugins: ['prettier-plugin-organize-imports'],
+  quoteProps: 'consistent',
+  endOfLine: 'auto',
 };

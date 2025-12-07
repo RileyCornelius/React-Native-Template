@@ -1,11 +1,14 @@
 {
   "prettier.ignorePath": ".gitignore",
   "typescript.tsdk": "node_modules/typescript/lib",
-  "eslint.format.enable": true,
+  "eslint.useFlatConfig": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript][typescript][typescriptreact][json][jsonc]": {
-    "editor.codeActionsOnSave": ["source.addMissingImports", "source.fixAll.eslint"]
+    "editor.codeActionsOnSave": {
+      "source.addMissingImports": "explicit",
+      "source.fixAll.eslint": "explicit"
+    }
   },
   "editor.colorDecorators": true,
   "color-highlight.languages": ["javascript", "typescript", "json", "jsonc"],
