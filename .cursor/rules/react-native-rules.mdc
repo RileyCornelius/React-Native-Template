@@ -1,0 +1,210 @@
+---
+globs: *.tsx,*.ts
+alwaysApply: false
+---
+
+# React Native/Expo Project
+
+You are an expert in TypeScript, React Native, Expo, and Mobile UI development.
+
+Every time you choose to apply a rule(s), explicitly state the rule(s) in the output. You can abbreviate the rule description to a single word or phrase.
+
+## Code Style and Structure
+
+- Write concise, technical TypeScript code with accurate examples
+- Use functional and declarative programming patterns; avoid classes
+- Prefer iteration and modularization over code duplication
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError)
+- Ensure components are modular, reusable, and maintainable
+- Component Modularity: Break down components into smaller, reusable pieces. Keep components focused on a single responsibility and shouldn't be more than 80 lines of code.
+
+## Project Structure
+
+```text
+src/
+  ├── app/              ## expo router screens (file-based routing)
+  │   ├── _layout.tsx   ## root layout with navigation setup
+  │   ├── index.tsx     ## home screen
+  │   └── +not-found.tsx
+  ├── components/
+  │   ├── craft-ui/     ## pre-built UI components (Avatar, Button, Card, etc.)
+  │   └── ui/           ## custom/extended ui components
+  ├── store/            ## jotai atoms for state management
+  └── themes/           ## unistyles theme configuration
+      ├── breakpoints.ts
+      ├── colors.ts
+      ├── fonts.ts
+      ├── radius.ts
+      ├── spacing.ts
+      ├── theme.ts
+      └── unistyles.ts  ## unistyles configuration
+assets/
+  ├── fonts/            ## custom fonts
+  └── images/           ## image assets (icons, splash, etc.)
+```
+
+## Tools
+
+Default to using Bun instead of Node.js.
+
+- Use `bun expo install <package-name>` for installing expo-compatible packages
+- Use `bun add <package-name>` for installing other packages
+- Use `bun run <script>` instead of npm/yarn run
+- Use `bun tsc` for type checking
+
+## Tech Stack
+
+### Core
+
+- Expo SDK 54
+- React Native 0.81
+- TypeScript
+- Expo Router (file-based routing)
+
+### Styling
+
+- react-native-unistyles (theming and styling)
+- Light/Dark theme support with adaptive themes
+
+### UI Components
+
+- Pre-built craft-ui components (Avatar, Button, Card, Checkbox, Switch, Slider, etc.)
+- @expo/vector-icons
+- expo-blur
+- react-native-svg
+
+### Animations & Gestures
+
+- moti (declarative animations)
+- react-native-reanimated
+- react-native-gesture-handler
+
+### Navigation
+
+- expo-router
+- @react-navigation/native
+- @react-navigation/bottom-tabs
+
+### Storage & Data
+
+- react-native-mmkv (persistent storage)
+- axios (HTTP client)
+- neverthrow (Result-based error handling)
+
+### Media
+
+- expo-image (optimized images)
+- expo-video
+- @shopify/flash-list (performant lists)
+
+### Fonts
+
+- @expo-google-fonts/space-grotesk
+
+## Naming Conventions
+
+- Favor named exports for components and utilities
+- Use PascalCase for component files (e.g., `Button.tsx`, `Avatar.tsx`)
+- Use camelCase for utility/hook files (e.g., `useAuth.ts`)
+- Use `@/` for importing internal files. Defined in tsconfig: `"paths": {"@/*": ["./src/*", "./"]}`
+
+## TypeScript Usage
+
+- Use TypeScript for all code; prefer types over interfaces
+- Avoid enums; use const objects with 'as const' assertion
+- Use functional components with TypeScript types
+- Use absolute imports for all files @/...
+- Avoid try/catch blocks unless there's good reason to translate or handle error in that abstraction
+- Use explicit return types for all functions
+
+## UI and Styling with Unistyles
+
+- Use `StyleSheet.create` from `react-native-unistyles` for all styles
+- Access theme values via the style function parameter: `StyleSheet.create((theme) => ({ ... }))`
+- Use theme colors, spacing, and radius from the themes folder
+- Support both light and dark themes - use theme values, not hardcoded colors
+
+Example:
+
+```tsx
+import { StyleSheet } from 'react-native-unistyles';
+
+const styles = StyleSheet.create((theme) => ({
+  container: {
+    backgroundColor: theme.colors.background,
+    padding: theme.spacing.md,
+    borderRadius: theme.radius.md,
+  },
+}));
+```
+
+## Components
+
+### Using craft-ui components
+
+Import pre-built components from `@/components/craft-ui`:
+
+```tsx
+import { Avatar } from '@/components/craft-ui/Avatar';
+import { Card } from '@/components/craft-ui/Card';
+```
+
+### Using ui components
+
+Import custom/extended components from `@/components/ui`:
+
+```tsx
+import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
+```
+
+## State Management
+
+- Use jotai for global/shared state management
+- Keep atoms small and focused on a single piece of state
+- Derive computed state using derived atoms
+- Implement proper cleanup in useEffect hooks
+
+Example:
+
+```tsx
+import { atom, useAtom } from 'jotai';
+
+// Define atoms
+export const countAtom = atom(0);
+export const userAtom = atom<User | null>(null);
+
+// Derived atom
+export const isLoggedInAtom = atom((get) => get(userAtom) !== null);
+
+// Usage in component
+function Counter() {
+  const [count, setCount] = useAtom(countAtom);
+  return <Button onPress={() => setCount((c) => c + 1)} title={`Count: ${count}`} />;
+}
+```
+
+## Animations
+
+- Use moti for declarative animations (built on reanimated)
+- Use react-native-reanimated for complex/custom animations
+- Use react-native-gesture-handler for gesture-based interactions
+- Use expo-haptics for tactile feedback
+
+## Images
+
+- Use expo-image instead of React Native's Image component for better performance and caching
+- Use @shopify/flash-list for image-heavy or long lists
+
+## Error Handling
+
+- Use neverthrow Result types for operations that can fail (API calls, parsing, etc.)
+- Prefer Result pattern over try/catch for explicit error handling
+- Log errors appropriately for debugging (use console.error())
+- Provide user-friendly error messages
+
+## Linting & Formatting
+
+- Use ESLint and Prettier for linting and formatting
+- Run `bun run lint` to check for issues
+- Run `bun run format` to auto-fix formatting
