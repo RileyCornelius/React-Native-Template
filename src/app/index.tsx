@@ -3,9 +3,9 @@ import { StyleSheet } from 'react-native-unistyles';
 import { Stack, useRouter } from 'expo-router';
 import { MotiView } from 'moti';
 
-import { Container } from '@/components/Container';
 import { Button } from '@/components/craft-ui/Button';
 import { ScreenContent } from '@/components/ScreenContent';
+import { Container } from '@/components/ui/Container';
 
 export default function Home() {
   const router = useRouter();
@@ -28,7 +28,7 @@ export default function Home() {
 
         <View style={styles.button}>
           <Button onPress={handlePress} size="regular" variant="primary">
-            Click me
+            {'Click Me'}
           </Button>
         </View>
       </Container>
