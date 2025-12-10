@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "expo-stack-unistyle",
-    "slug": "expo-stack-unistyle",
-    "scheme": "expo-stack-unistyle",
+    "name": "template",
+    "slug": "template",
+    "scheme": "template",
     "version": "1.0.0",
     "newArchEnabled": true,
     "userInterfaceStyle": "automatic",
@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.x5and5.expostackunistyle"
+      "bundleIdentifier": "com.template.expostackunistyle"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,7 +22,8 @@
         "backgroundColor": "#ffffff"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.x5and5.expostackunistyle"
+      "edgeToEdgeEnabled": true,
+      "package": "com.template.expostackunistyle"
     },
     "plugins": [
       "./fix.js",

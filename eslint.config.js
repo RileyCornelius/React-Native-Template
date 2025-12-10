@@ -1,18 +1,25 @@
 /* eslint-env node */
 const { defineConfig } = require('eslint/config');
 const expoConfig = require('eslint-config-expo/flat');
-const prettierPlugin = require('eslint-plugin-prettier');
+const reactCompiler = require('eslint-plugin-react-compiler');
+const reactHooks = require('eslint-plugin-react-hooks');
 
 module.exports = defineConfig([
   expoConfig,
+  reactCompiler.configs.recommended,
   {
     ignores: ['node_modules/**', 'ios/**', 'android/**', '.expo/**', '.vscode/**'],
   },
   {
     plugins: {
-      prettier: prettierPlugin,
+      'react-hooks': reactHooks,
     },
     rules: {
+      // react-hooks
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      // React Compiler rules (enables optimization hints)
+      'react-compiler/react-compiler': 'error',
       'react/display-name': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
       'no-restricted-imports': [
@@ -36,13 +43,7 @@ module.exports = defineConfig([
             caseInsensitive: true,
           },
           'newlines-between': 'always',
-          'groups': [
-            ['builtin', 'external'],
-            'internal',
-            'unknown',
-            ['parent', 'sibling'],
-            'index',
-          ],
+          'groups': [['builtin', 'external'], 'internal', 'unknown'],
           'distinctGroup': false,
           'pathGroups': [
             {

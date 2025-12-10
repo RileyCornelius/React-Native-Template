@@ -16,28 +16,21 @@ Every time you choose to apply a rule(s), explicitly state the rule(s) in the ou
 - Prefer iteration and modularization over code duplication
 - Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError)
 - Ensure components are modular, reusable, and maintainable
-- Component Modularity: Break down components into smaller, reusable pieces. Keep components focused on a single responsibility and shouldn't be more than 80 lines of code.
+- Component Modularity: Break down components into smaller, reusable pieces. Keep components focused on a single responsibility
 
 ## Project Structure
 
 ```text
 src/
   ├── app/              ## expo router screens (file-based routing)
-  │   ├── _layout.tsx   ## root layout with navigation setup
-  │   ├── index.tsx     ## home screen
-  │   └── +not-found.tsx
   ├── components/
   │   ├── craft-ui/     ## pre-built UI components (Avatar, Button, Card, etc.)
   │   └── ui/           ## custom/extended ui components
+  ├── constants/        ## shared const vars
+  ├── services/         ## API clients, business logic
   ├── store/            ## jotai atoms for state management
-  └── themes/           ## unistyles theme configuration
-      ├── breakpoints.ts
-      ├── colors.ts
-      ├── fonts.ts
-      ├── radius.ts
-      ├── spacing.ts
-      ├── theme.ts
-      └── unistyles.ts  ## unistyles configuration
+  ├── themes/           ## unistyles theme configuration
+  └── types/            ## shared TypeScript types
 assets/
   ├── fonts/            ## custom fonts
   └── images/           ## image assets (icons, splash, etc.)
@@ -57,9 +50,9 @@ Default to using Bun instead of Node.js.
 ### Core
 
 - Expo SDK 54
-- React Native 0.81
-- TypeScript
-- Expo Router (file-based routing)
+- React 19.1 / React Native 0.81 (New Architecture enabled, React Compiler enabled)
+- TypeScript 5.9
+- Expo Router v6 (file-based routing with typed routes)
 
 ### Styling
 
@@ -68,72 +61,86 @@ Default to using Bun instead of Node.js.
 
 ### UI Components
 
-- Pre-built craft-ui components (Avatar, Button, Card, Checkbox, Switch, Slider, etc.)
-- @expo/vector-icons
+- Pre-built craft-ui components (Avatar, Button, ButtonRound, Card, Checkbox, Switch, Slider, PressableScale, etc.)
+- @expo/vector-icons (Ionicons)
 - expo-blur
 - react-native-svg
 
 ### Animations & Gestures
 
-- moti (declarative animations)
-- react-native-reanimated
-- react-native-gesture-handler
+- moti (declarative animations with MotiView)
+- react-native-reanimated v4
+- react-native-gesture-handler v2
+- expo-haptics (tactile feedback)
 
 ### Navigation
 
-- expo-router
-- @react-navigation/native
+- expo-router v6 (built on React Navigation v7)
+- Drawer navigation (root level)
+- Tab navigation (nested)
+- @react-navigation/drawer
 - @react-navigation/bottom-tabs
 
 ### Storage & Data
 
 - react-native-mmkv (persistent storage)
+- jotai (state management)
 - axios (HTTP client)
 - neverthrow (Result-based error handling)
 
 ### Media
 
-- expo-image (optimized images)
+- expo-image (optimized images with caching)
 - expo-video
-- @shopify/flash-list (performant lists)
 
-### Fonts
+### Keyboard
 
-- @expo-google-fonts/space-grotesk
+- react-native-keyboard-controller (keyboard handling)
 
 ## Naming Conventions
 
 - Favor named exports for components and utilities
 - Use PascalCase for component files (e.g., `Button.tsx`, `Avatar.tsx`)
 - Use camelCase for utility/hook files (e.g., `useAuth.ts`)
+- Use kebab-case for route files (e.g., `user-profile.tsx`) - this is Expo Router best practice
 - Use `@/` for importing internal files. Defined in tsconfig: `"paths": {"@/*": ["./src/*", "./"]}`
 
 ## TypeScript Usage
 
-- Use TypeScript for all code; prefer types over interfaces
+- Use `type` for simple types eg. `type theme = 'light'| 'dark'` and `interface` for object shapes
 - Avoid enums; use const objects with 'as const' assertion
 - Use functional components with TypeScript types
 - Use absolute imports for all files @/...
 - Avoid try/catch blocks unless there's good reason to translate or handle error in that abstraction
-- Use explicit return types for all functions
 
 ## UI and Styling with Unistyles
 
 - Use `StyleSheet.create` from `react-native-unistyles` for all styles
 - Access theme values via the style function parameter: `StyleSheet.create((theme) => ({ ... }))`
-- Use theme colors, spacing, and radius from the themes folder
+- Use theme tokens: `theme.colors`, `theme.spacing`, `theme.borderRadius`, `theme.textVariants`, `theme.fontSizes`, `theme.fonts`
 - Support both light and dark themes - use theme values, not hardcoded colors
+- Use `useUnistyles()` hook to access theme in components when needed but prefer to do all styling in StyleSheet
 
 Example:
 
 ```tsx
-import { StyleSheet } from 'react-native-unistyles';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+
+const MyComponent = (): React.ReactElement => {
+  const { theme } = useUnistyles();
+  // Use theme.colors.interactivePrimary for dynamic values
+  return <View style={styles.container} />;
+};
 
 const styles = StyleSheet.create((theme) => ({
   container: {
-    backgroundColor: theme.colors.background,
-    padding: theme.spacing.md,
-    borderRadius: theme.radius.md,
+    backgroundColor: theme.colors.backgroundScreen,
+    padding: theme.spacing.medium,
+    borderRadius: theme.borderRadius.large,
+  },
+  text: {
+    ...theme.textVariants.body1,
+    color: theme.colors.contentPrimary,
   },
 }));
 ```
@@ -164,47 +171,48 @@ import { Container } from '@/components/ui/Container';
 - Keep atoms small and focused on a single piece of state
 - Derive computed state using derived atoms
 - Implement proper cleanup in useEffect hooks
+- Use atomWithMMKV for persisted state when needed
 
-Example:
+## Expo Router Navigation
 
-```tsx
-import { atom, useAtom } from 'jotai';
+Use Expo Router hooks for navigation instead of React Navigation props:
 
-// Define atoms
-export const countAtom = atom(0);
-export const userAtom = atom<User | null>(null);
-
-// Derived atom
-export const isLoggedInAtom = atom((get) => get(userAtom) !== null);
-
-// Usage in component
-function Counter() {
-  const [count, setCount] = useAtom(countAtom);
-  return <Button onPress={() => setCount((c) => c + 1)} title={`Count: ${count}`} />;
-}
-```
+- Prefer `useRouter` hook over `<Link>` component
+- Use `useLocalSearchParams` when basing params
 
 ## Animations
 
-- Use moti for declarative animations (built on reanimated)
-- Use react-native-reanimated for complex/custom animations
-- Use react-native-gesture-handler for gesture-based interactions
+- Use moti for declarative animations
+- Use react-native-reanimated v3 for complex/custom animations
+- Use react-native-gesture-handler v2 for gesture-based interactions
 - Use expo-haptics for tactile feedback
 
 ## Images
 
 - Use expo-image instead of React Native's Image component for better performance and caching
-- Use @shopify/flash-list for image-heavy or long lists
+- Always specify width and height for remote images
+- Use contentFit prop for image scaling behavior
+
+## Lists Performance
+
+- Use @shopify/flash-list instead of FlatList for large lists
+- Implement `getItemLayout` when item heights are known
+- Use `estimatedItemSize` for FlashList
+- Avoid anonymous functions in renderItem, extract to component
 
 ## Error Handling
 
 - Use neverthrow Result types for operations that can fail (API calls, parsing, etc.)
 - Prefer Result pattern over try/catch for explicit error handling
 - Log errors appropriately for debugging (use console.error())
-- Provide user-friendly error messages
+- Provide user-friendly error messages (use Alert)
+- Use ErrorBoundary components for UI error recovery
 
-## Linting & Formatting
+## Environment Variables
 
-- Use ESLint and Prettier for linting and formatting
-- Run `bun run lint` to check for issues
-- Run `bun run format` to auto-fix formatting
+- Use EXPO*PUBLIC*\* prefix for client-side environment variables
+- Access via process.env.EXPO*PUBLIC*\*\*
+
+## Performance Best Practices
+
+React Compiler is enabled and automatically handles memoization. You generally **don't need** manual `useMemo`, `useCallback`, or `React.memo` for preventing re-renders, but you may still use `useCallback` for passing stable references to child components or dependencies.
