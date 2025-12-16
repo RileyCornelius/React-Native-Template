@@ -1,26 +1,13 @@
 # React Native Expo Template
 
-A modern React Native Expo template with Unistyles theming, pre-built UI components.
-
-## ✨ Features
-
-- **Expo SDK 54** with New Architecture enabled
-- **React Native 0.81** with React 19
-- **TypeScript** with strict mode
-- **Expo Router** for file-based navigation
-- **Unistyles 3** for theming and styling (light/dark mode)
-- **Craft UI Components** - 20+ pre-built, customizable components
-- **Jotai** for atomic state management
-- **Moti + Reanimated** for smooth animations
-- **MMKV** for fast persistent storage
-- **ESLint + Prettier** pre-configured
+A React Native Expo template with Unistyles theming, pre-built UI components.
 
 ## 🛠 Tech Stack
 
 | Category   | Technology                     |
 | ---------- | ------------------------------ |
 | Framework  | Expo SDK 54, React Native 0.81 |
-| Language   | TypeScript 5.9                 |
+| Language   | TypeScript                     |
 | Routing    | Expo Router 6                  |
 | Styling    | react-native-unistyles 3       |
 | State      | Jotai                          |
@@ -28,19 +15,29 @@ A modern React Native Expo template with Unistyles theming, pre-built UI compone
 | Animations | Moti, Reanimated 4             |
 | Gestures   | react-native-gesture-handler   |
 | Images     | expo-image                     |
-| Lists      | @shopify/flash-list            |
 | HTTP       | Axios                          |
 | Icons      | @expo/vector-icons             |
-| Fonts      | Space Grotesk                  |
+| Fonts      | @expo-google-fonts             |
+| Components | Craft UI 20+ pre-built         |
+| Lint       | ESLint                         |
+| Format     | Prettier                       |
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) 18+ (required for Expo)
+- [Node.js](https://nodejs.org/) 24 (required for Expo)
 - [Bun](https://bun.sh/) (recommended) or npm/yarn
 - [Expo](https://docs.expo.dev/get-started/installation/)
-- [iOS Simulator](https://docs.expo.dev/workflow/ios-simulator/) (Mac) or [Android Emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [Android Emulator](https://docs.expo.dev/workflow/android-studio-emulator/) or [iOS Simulator](https://docs.expo.dev/workflow/ios-simulator/) (Mac only)
+
+## For Windows with Android Emulator
+
+Follow the this guide: [Setup your Environment](https://docs.expo.dev/get-started/set-up-your-environment/?mode=development-build&platform=android&device=simulated&buildEnv=local)
+
+1. Make sure that `Android Emulator` and `Development Build` are selected
+2. 
+
 
 ### Installation
 
@@ -48,7 +45,7 @@ A modern React Native Expo template with Unistyles theming, pre-built UI compone
 
    ```bash
    # Clone the repository
-   git clone https://github.com/your-username/expo-unistyle-craft-template.git my-app
+   git clone https://github.com/RileyCornelius/React-Native-Template.git my-app
    cd my-app
    ```
 
@@ -58,23 +55,30 @@ A modern React Native Expo template with Unistyles theming, pre-built UI compone
    bun install
    ```
 
-3. **Generate native projects**
+3. **Check installation**
 
    ```bash
-   bun run prebuild
+   bun expo-install
+   bun doctor
    ```
 
-4. **Start the development server**
+4. **Generate native projects**
+
+   ```bash
+   bun prebuild
+   ```
+
+5. **Start the development server**
 
    ```bash
    # Run on Android
-   bun run android
+   bun android
 
    # Run on iOS
-   bun run ios
+   bun ios
 
    # Run on Web
-   bun run web
+   bun web
    ```
 
 ## 📁 Project Structure
@@ -88,41 +92,29 @@ src/
 │   └── +not-found.tsx      # 404 screen
 ├── components/
 │   ├── craft-ui/           # Pre-built UI components
-│   │   ├── Avatar/
-│   │   ├── Button/
-│   │   ├── Card/
-│   │   ├── Checkbox/
-│   │   ├── Switch/
-│   │   └── ...
 │   └── ui/                 # Custom/extended components
 ├── store/                  # Jotai atoms (state management)
 └── themes/                 # Unistyles theme configuration
-    ├── breakpoints.ts
-    ├── colors.ts
-    ├── fonts.ts
-    ├── radius.ts
-    ├── spacing.ts
-    ├── theme.ts
-    └── unistyles.ts
 assets/
 ├── fonts/                  # Custom fonts
-└── images/                 # App icons, splash screen
+└── images/                 # App icons, splash screen, etc
 ```
 
 ## 📜 Available Scripts
 
-| Command            | Description                      |
-| ------------------ | -------------------------------- |
-| `bun run start`    | Start dev server with dev client |
-| `bun run android`  | Run on Android device/emulator   |
-| `bun run ios`      | Run on iOS simulator             |
-| `bun run web`      | Run on web browser               |
-| `bun run prebuild` | Generate native projects (clean) |
-| `bun run tsc`      | Type check without emitting      |
-| `bun run lint`     | Check for linting errors         |
-| `bun run format`   | Auto-fix linting and formatting  |
-| `bun run fix`      | Fix Expo dependency versions     |
-| `bun run doctor`   | Run Expo doctor diagnostics      |
+| Command                 | Description                         |
+| ----------------------- | ----------------------------------- |
+| `bun run start`         | Start dev server with dev client    |
+| `bun run android`       | Run locally Android device/emulator |
+| `bun run android:build` | Builds for android using eas        |
+| `bun run ios`           | Run on iOS simulator                |
+| `bun run web`           | Run on web browser                  |
+| `bun run prebuild`      | Generate native projects (clean)    |
+| `bun run tsc`           | Type check without emitting         |
+| `bun run lint`          | Check for linting errors            |
+| `bun run format`        | Auto-fix linting and formatting     |
+| `bun run expo-install`  | Fix Expo dependency versions        |
+| `bun run doctor`        | Run Expo doctor diagnostics         |
 
 ### Theme Structure
 
@@ -157,13 +149,19 @@ Pre-built, production-ready components in `src/components/craft-ui/`:
 - **Counter** - Increment/decrement
 - **Text** - Themed typography
 
+## Installing Packages
+
+```bash
+npx expo install <package-name>
+```
+
 ## 📱 Building for Production
 
 ### EAS Build
 
 ```bash
 # Install EAS CLI
-bun add -g eas-cli
+npm install --global eas-cli
 
 # Configure EAS
 eas build:configure
