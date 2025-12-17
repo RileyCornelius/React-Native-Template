@@ -4,7 +4,6 @@ import { Stack, useLocalSearchParams } from 'expo-router';
 
 import { ListItem } from '@/components/craft-ui/ListItem';
 import { ScreenContent } from '@/components/ScreenContent';
-import { Container } from '@/components/ui/Container';
 
 export default function Details() {
   const { name } = useLocalSearchParams();
@@ -12,7 +11,7 @@ export default function Details() {
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: 'Details' }} />
-      <Container>
+      <View style={styles.content}>
         <ScreenContent path="screens/details.tsx" title={`Showing details for user ${name}`} />
         <View style={styles.listContainer}>
           <ListItem
@@ -22,14 +21,9 @@ export default function Details() {
             divider={true}
             style={styles.listItem}
           />
-          <ListItem
-            text="Item 2"
-            textBelow="Item 2 description"
-            onPress={() => console.log('Item 2 pressed')}
-            style={styles.listItem}
-          />
+          <ListItem text="Item 2" textBelow="Item 2 description" onPress={() => console.log('Item 2 pressed')} style={styles.listItem} />
         </View>
-      </Container>
+      </View>
     </View>
   );
 }
@@ -38,6 +32,11 @@ const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1,
     backgroundColor: theme.colors.backgroundScreen,
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: theme.spacing.large,
+    paddingVertical: theme.spacing.medium,
   },
   listContainer: {
     marginHorizontal: 24,

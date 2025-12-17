@@ -2,18 +2,16 @@ import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 import { Link, Stack } from 'expo-router';
 
-import { Container } from '@/components/Container';
-
 export default function NotFoundScreen() {
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: 'Oops!' }} />
-      <Container>
+      <View style={styles.content}>
         <Text style={styles.title}>{"This screen doesn't exist."}</Text>
         <Link href="/" style={styles.link}>
           <Text style={styles.linkText}>Go to home screen!</Text>
         </Link>
-      </Container>
+      </View>
     </View>
   );
 }
@@ -22,6 +20,12 @@ const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: theme.spacing.xlarge,
+    paddingVertical: theme.spacing.large,
+    justifyContent: 'center',
   },
   title: {
     fontSize: 20,
