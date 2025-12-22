@@ -25,6 +25,12 @@ export default function Home() {
     });
   }
 
+  function settingsRoute() {
+    router.push({
+      pathname: '/settings',
+    });
+  }
+
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: 'Home' }} />
@@ -42,6 +48,12 @@ export default function Home() {
         <View style={styles.button}>
           <Button onPress={exampleRoute} size="regular" variant="primary">
             {'Example Page'}
+          </Button>
+        </View>
+
+        <View style={styles.button}>
+          <Button onPress={settingsRoute} size="regular" variant="primary">
+            {'Settings Page'}
           </Button>
         </View>
       </View>

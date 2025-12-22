@@ -13,16 +13,8 @@ export default function Details() {
       <Stack.Screen options={{ title: 'Details' }} />
       <View style={styles.content}>
         <ScreenContent path="screens/details.tsx" title={`Showing details for user ${name}`} />
-        <View style={styles.listContainer}>
-          <ListItem
-            text="Item 1"
-            textBelow="Item 1 description"
-            onPress={() => console.log('Item 1 pressed')}
-            divider={true}
-            style={styles.listItem}
-          />
-          <ListItem text="Item 2" textBelow="Item 2 description" onPress={() => console.log('Item 2 pressed')} style={styles.listItem} />
-        </View>
+        <ListItem text="Item 1" textBelow="Item 1 description" onPress={() => console.log('Item 1 pressed')} divider={true} style={styles.listItem} />
+        <ListItem text="Item 2" textBelow="Item 2 description" onPress={() => console.log('Item 2 pressed')} style={styles.listItem} />
       </View>
     </View>
   );
@@ -31,22 +23,24 @@ export default function Details() {
 const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.backgroundScreen,
+    backgroundColor: theme.colors.background,
   },
   content: {
     flex: 1,
     paddingHorizontal: theme.spacing.large,
-    paddingVertical: theme.spacing.medium,
+    paddingVertical: theme.spacing.xlarge,
   },
   listContainer: {
     marginHorizontal: 24,
     marginBottom: 24,
     borderRadius: 10,
-    backgroundColor: theme.colors.backgroundNeutral,
+    backgroundColor: theme.colors.backgroundScreen,
     overflow: 'hidden',
   },
   listItem: {
     paddingHorizontal: 14,
     paddingVertical: 10,
+    borderRadius: 12,
+    overflow: 'hidden',
   },
 }));

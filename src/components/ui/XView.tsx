@@ -18,7 +18,6 @@ XView.displayName = 'XView';
 
 const styles = StyleSheet.create((theme) => ({
   container: {
-    backgroundColor: theme.colors.background,
     flexDirection: 'row',
   },
 }));

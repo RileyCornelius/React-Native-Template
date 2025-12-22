@@ -12,8 +12,8 @@ type AppThemes = {
 };
 
 declare module 'react-native-unistyles' {
-  export interface UnistylesBreakpoints extends AppBreakpoints {}
-  export interface UnistylesThemes extends AppThemes {}
+  export interface UnistylesBreakpoints extends AppBreakpoints { }
+  export interface UnistylesThemes extends AppThemes { }
 }
 
 StyleSheet.configure({

@@ -18,7 +18,6 @@ YView.displayName = 'YView';
 
 const styles = StyleSheet.create((theme) => ({
   container: {
-    backgroundColor: theme.colors.background,
     flexDirection: 'column',
   },
 }));
