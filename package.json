@@ -11,7 +11,7 @@
     "ios:build": "eas build:run --profile development --platform ios",
     "prebuild": "expo prebuild --clean",
     "tsc": "tsc --noEmit",
-    "expo-install": "expo install --fix",
+    "install-fix": "expo install --fix",
     "doctor": "npx expo-doctor",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" && prettier -c \"src/**/*.{js,jsx,ts,tsx,json}\"",
     "format": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix && prettier \"src/**/*.{js,jsx,ts,tsx,json}\" --write"
@@ -23,7 +23,6 @@
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",
     "@react-navigation/native": "^7.0.14",
-    "axios": "^1.13.2",
     "expo": "~54.0.29",
     "expo-blur": "~15.0.8",
     "expo-constants": "~18.0.12",

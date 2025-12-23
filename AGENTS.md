@@ -1,8 +1,3 @@
----
-globs: *.tsx,*.ts
-alwaysApply: false
----
-
 # React Native/Expo Project
 
 You are an expert in TypeScript, React Native, Expo, and Mobile UI development.

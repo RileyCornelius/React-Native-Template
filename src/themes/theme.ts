@@ -10,20 +10,6 @@ const baseTheme = {
   textVariants: textVariants,
   colors: {
     transparent: 'transparent',
-    white: colors.stone10,
-    black: colors.stone900,
-    purple: colors.purple600,
-    maroon: colors.maroon600,
-    steel: colors.steel600,
-    forest: colors.forest600,
-    sunshine: colors.sunshine200,
-    red: colors.negative500,
-    green: colors.positive500,
-    blue: colors.blue700,
-    azureRadiance: '#007AFF',
-    limedSpruce: '#38434D',
-    cornflowerBlue: '#6366F1',
-    astral: '#2E78B7',
   },
 } as const;
 
