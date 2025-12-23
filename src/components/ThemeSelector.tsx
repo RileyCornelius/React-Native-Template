@@ -1,4 +1,4 @@
-import { Pressable, useColorScheme, View } from 'react-native';
+import { Pressable, StyleProp, useColorScheme, View, ViewStyle } from 'react-native';
 import Animated, { LayoutAnimationConfig, ZoomInRotate } from 'react-native-reanimated';
 import { themeAtom, useTheme } from '@/store/theme';
 import { useAtom } from 'jotai';
@@ -27,9 +27,9 @@ function ThemeRadioOption({ value: theme }: { value: 'light' | 'dark' | 'system'
   );
 }
 
-export function ThemeSelector() {
+export function ThemeSelector({ style }: { style?: StyleProp<ViewStyle> }) {
   return (
-    <Card style={{ padding: 16, marginHorizontal: 12, gap: 12 }}>
+    <Card style={[{ padding: 16, marginHorizontal: 12, gap: 12 }, style]}>
       <Text variant="heading3">Select Theme</Text>
       <Divider />
       <ThemeRadioOption value="light" />

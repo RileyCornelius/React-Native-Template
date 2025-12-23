@@ -2,7 +2,7 @@ import React, { use, useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { StyleSheet, UnistylesRuntime, useUnistyles } from 'react-native-unistyles';
-import { Stack } from 'expo-router';
+import { Slot, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SystemUI from 'expo-system-ui';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
@@ -37,7 +37,7 @@ export default function Layout() {
             },
             headerTintColor: theme.colors.typography,
           }}>
-          <Stack.Screen name="index" options={{ title: 'Home' }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>
         <StatusBar style={storedTheme === 'system' ? 'auto' : storedTheme === 'dark' ? 'light' : 'dark'} />
       </KeyboardProvider>

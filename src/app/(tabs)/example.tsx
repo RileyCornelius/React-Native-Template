@@ -61,7 +61,6 @@ export default function Example() {
 
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: 'Component Showcase' }} />
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {/* Text */}
         <SectionCard title="Text">

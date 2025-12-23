@@ -9,12 +9,13 @@ import { ScreenContent } from '@/components/ScreenContent';
 import { margin } from '@/themes/spacing';
 import React from 'react';
 import { ThemeSelector } from '@/components/ThemeSelector';
+import { Card } from '@/components/craft-ui/Card';
 
 export default function Settings() {
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: 'Settings' }} />
-      <ThemeSelector />
+      <ThemeSelector style={styles.card} />
     </View>
   );
 }
@@ -23,6 +24,7 @@ const styles = StyleSheet.create((theme, rt) => ({
   container: {
     flex: 1,
     paddingBottom: rt.insets.bottom,
-    backgroundColor: theme.colors.background,
+    backgroundColor: theme.colors.backgroundScreen,
   },
+  card: { padding: 16, borderRadius: 16, marginTop: 16 } satisfies ViewStyle,
 }));
