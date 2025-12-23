@@ -1,14 +1,7 @@
 import type { ReactNode } from 'react';
 import React, { useCallback } from 'react';
 import { Pressable, type PressableProps } from 'react-native';
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-  type EasingFunction,
-  type SharedValue,
-} from 'react-native-reanimated';
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming, type EasingFunction, type SharedValue } from 'react-native-reanimated';
 
 export type AnimationConfig = {
   /**
@@ -103,11 +96,7 @@ export const PressableScale = ({
 
   return (
     <Animated.View style={scaleStyle}>
-      <Pressable
-        disabled={disabled}
-        onPressIn={handlePressIn}
-        onPressOut={handlePressOut}
-        {...pressableProps}>
+      <Pressable disabled={disabled} onPressIn={handlePressIn} onPressOut={handlePressOut} {...pressableProps}>
         {children}
       </Pressable>
     </Animated.View>

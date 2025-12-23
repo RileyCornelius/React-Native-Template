@@ -29,25 +29,15 @@ export type Props = {
     | 'sentimentSecondaryNegative';
 };
 
-export const Text = ({
-  color = 'contentPrimary',
-  variant = 'body1',
-  style,
-  ...props
-}: Props & TextProps) => {
+export const Text = ({ color = 'contentPrimary', variant = 'body1', style, ...props }: Props & TextProps) => {
   return <RNText style={[styles.text({ color, variant }), StyleSheet.flatten(style)]} {...props} />;
 };
 
 const styles = StyleSheet.create((theme) => ({
-  text: ({
-    color,
-    variant,
-  }: {
-    color: NonNullable<Props['color']>;
-    variant: NonNullable<Props['variant']>;
-  }) => {
+  text: ({ color, variant }: { color: NonNullable<Props['color']>; variant: NonNullable<Props['variant']> }) => {
     const variantStyle = theme.textVariants[variant];
     return {
+      fontFamily: 'Inter_500Medium',
       color: theme.colors[color],
       fontSize: variantStyle.fontSize,
       lineHeight: variantStyle.lineHeight,

@@ -1,10 +1,6 @@
 import React, { useMemo } from 'react';
 import { AccessibilityProps } from 'react-native';
-import Animated, {
-  interpolateColor,
-  useAnimatedStyle,
-  useSharedValue,
-} from 'react-native-reanimated';
+import Animated, { interpolateColor, useAnimatedStyle, useSharedValue, Easing } from 'react-native-reanimated';
 import { StyleSheet, UnistylesRuntime, useUnistyles } from 'react-native-unistyles';
 
 import { PressableScale, type AnimationConfig } from '../PressableScale';
@@ -13,11 +9,7 @@ import { PressableScale, type AnimationConfig } from '../PressableScale';
  * Convert a hex color to grayscale using luminance formula (0.299*R + 0.587*G + 0.114*B)
  */
 const hexToGrayscale = (hex: string): string =>
-  `#${Math.round(
-    0.299 * parseInt(hex.slice(1, 3), 16) +
-      0.587 * parseInt(hex.slice(3, 5), 16) +
-      0.114 * parseInt(hex.slice(5, 7), 16)
-  )
+  `#${Math.round(0.299 * parseInt(hex.slice(1, 3), 16) + 0.587 * parseInt(hex.slice(3, 5), 16) + 0.114 * parseInt(hex.slice(5, 7), 16))
     .toString(16)
     .padStart(2, '0')
     .repeat(3)}${hex.length === 9 ? hex.slice(7) : ''}`;
@@ -66,6 +58,13 @@ type BaseProps = {
  * @see AccessibilityProps
  */
 export type Props = BaseProps & AccessibilityProps;
+
+export const ButtonAnimationConfig: AnimationConfig = {
+  scaleIn: 0.98,
+  durationIn: 100,
+  durationOut: 100,
+  easing: Easing.out(Easing.cubic),
+};
 
 export const Button = ({
   children,
@@ -140,22 +139,14 @@ export const Button = ({
 
   const backgroundStyle = useAnimatedStyle(
     () => ({
-      backgroundColor: interpolateColor(
-        pressProgress.value,
-        [0, 1],
-        [colorConfig.backgroundUnpressed, colorConfig.backgroundPressed]
-      ),
+      backgroundColor: interpolateColor(pressProgress.value, [0, 1], [colorConfig.backgroundUnpressed, colorConfig.backgroundPressed]),
     }),
     [colorConfig.backgroundUnpressed, colorConfig.backgroundPressed]
   );
 
   const textStyle = useAnimatedStyle(
     () => ({
-      color: interpolateColor(
-        pressProgress.value,
-        [0, 1],
-        [colorConfig.textUnpressed, colorConfig.textPressed]
-      ),
+      color: interpolateColor(pressProgress.value, [0, 1], [colorConfig.textUnpressed, colorConfig.textPressed]),
     }),
     [colorConfig.textUnpressed, colorConfig.textPressed]
   );
@@ -169,12 +160,8 @@ export const Button = ({
       animationConfig={animationConfig}
       pressProgress={pressProgress}
       {...accessibilityProps}>
-      <Animated.View
-        key={`button-bg-${UnistylesRuntime.themeName}`}
-        style={[styles.button({ size, disabled }), backgroundStyle]}>
-        <Animated.Text
-          key={`button-text-${UnistylesRuntime.themeName}`}
-          style={[styles.text({ size }), textStyle]}>
+      <Animated.View key={`button-bg-${UnistylesRuntime.themeName}`} style={[styles.button({ size, disabled }), backgroundStyle]}>
+        <Animated.Text key={`button-text-${UnistylesRuntime.themeName}`} style={[styles.text({ size }), textStyle]}>
           {children}
         </Animated.Text>
       </Animated.View>
