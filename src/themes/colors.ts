@@ -11,6 +11,18 @@ export const colors = {
   darkTeal900: '#072829',
   darkTeal950: '#031a1d',
 
+  sage50: '#E6FCEC',
+  sage100: '#BFF8D1',
+  sage200: '#86EFAC',
+  sage300: '#73CE94',
+  sage400: '#60AE7C',
+  sage500: '#4D8E65',
+  sage600: '#3C704F',
+  sage700: '#2D563C',
+  sage800: '#1D3B28',
+  sage900: '#0E2115',
+  sage950: '#06140B',
+
   brightOrange100: '#f4d9ad',
   brightOrange200: '#efc685',
   brightOrange300: '#e8b05f',

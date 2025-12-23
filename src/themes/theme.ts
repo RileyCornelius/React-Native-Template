@@ -49,10 +49,10 @@ export const lightTheme = {
     sentimentSecondaryPositive: colors.positive50,
     sentimentSecondaryPositivePress: colors.positive100,
 
-    interactivePrimary: colors.brightTeal200,
-    interactivePrimaryPress: colors.brightTeal300,
-    interactivePrimaryContent: colors.darkTeal900,
-    interactivePrimaryContentPress: colors.darkTeal950,
+    interactivePrimary: colors.sage300,
+    interactivePrimaryPress: colors.sage400,
+    interactivePrimaryContent: colors.sage900,
+    interactivePrimaryContentPress: colors.sage950,
 
     interactiveSecondary: colors.brightTeal100,
     interactiveSecondaryPress: colors.brightTeal200,
@@ -114,10 +114,10 @@ export const darkTheme = {
     sentimentSecondaryPositive: colors.positive950,
     sentimentSecondaryPositivePress: colors.positive900,
 
-    interactivePrimary: colors.brightTeal300,
-    interactivePrimaryPress: colors.brightTeal200,
-    interactivePrimaryContent: colors.darkTeal900,
-    interactivePrimaryContentPress: colors.darkTeal800,
+    interactivePrimary: colors.sage400,
+    interactivePrimaryPress: colors.sage300,
+    interactivePrimaryContent: colors.sage900,
+    interactivePrimaryContentPress: colors.sage800,
 
     interactiveSecondary: colors.darkTeal800,
     interactiveSecondaryPress: colors.darkTeal600,

@@ -1,13 +1,5 @@
 import React, { forwardRef, useCallback, useRef, useState } from 'react';
-import {
-  NativeSyntheticEvent,
-  Platform,
-  Pressable,
-  TextInput,
-  TextInputFocusEventData,
-  TextInputProps,
-  View,
-} from 'react-native';
+import { NativeSyntheticEvent, Platform, Pressable, TargetedEvent, TextInput, TextInputProps, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 /**
@@ -45,7 +37,7 @@ export const InputSearch = forwardRef<TextInput, Props & TextInputProps>(functio
   }, [onPress]);
 
   const handleFocus = useCallback(
-    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    (e: NativeSyntheticEvent<TargetedEvent>) => {
       setIsFocused(true);
       onFocus?.(e);
     },
@@ -53,7 +45,7 @@ export const InputSearch = forwardRef<TextInput, Props & TextInputProps>(functio
   );
 
   const handleBlur = useCallback(
-    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    (e: NativeSyntheticEvent<TargetedEvent>) => {
       setIsFocused(false);
       onBlur?.(e);
     },
@@ -61,11 +53,7 @@ export const InputSearch = forwardRef<TextInput, Props & TextInputProps>(functio
   );
 
   return (
-    <Pressable
-      onPress={handlePress}
-      style={styles.container}
-      accessible={!!onPress}
-      role={!!onPress ? 'button' : undefined}>
+    <Pressable onPress={handlePress} style={styles.container} accessible={!!onPress} role={!!onPress ? 'button' : undefined}>
       <View
         style={styles.inputContainer({
           active: isActive,
@@ -99,9 +87,7 @@ const styles = StyleSheet.create((theme) => {
       alignItems: 'center',
       borderRadius: theme.borderRadius.full,
       borderWidth: 1,
-      borderColor: active
-        ? theme.colors.contentAccentSecondary
-        : theme.colors.borderNeutralSecondary,
+      borderColor: active ? theme.colors.contentAccentSecondary : theme.colors.borderNeutralSecondary,
       paddingHorizontal: theme.spacing.small,
       paddingVertical: theme.spacing.xsmall,
       height: 48,

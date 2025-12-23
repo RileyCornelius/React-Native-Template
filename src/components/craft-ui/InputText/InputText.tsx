@@ -1,19 +1,6 @@
 import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
-import {
-  NativeSyntheticEvent,
-  Platform,
-  Pressable,
-  TextInput,
-  TextInputFocusEventData,
-  TextInputProps,
-  View,
-} from 'react-native';
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import { NativeSyntheticEvent, Platform, Pressable, TargetedEvent, TextInput, TextInputProps, View } from 'react-native';
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Text } from '../Text';
@@ -81,20 +68,7 @@ type PropsWithPlaceholder = BaseProps & {
 export type Props = PropsWithLabel | PropsWithPlaceholder;
 
 export const InputText = forwardRef<TextInput, Props & TextInputProps>(function InputText(
-  {
-    size = 'medium',
-    label,
-    onPress,
-    value,
-    itemLeft,
-    itemRight,
-    onFocus,
-    error,
-    style,
-    editable = true,
-    readOnly = false,
-    ...restProps
-  },
+  { size = 'medium', label, onPress, value, itemLeft, itemRight, onFocus, error, style, editable = true, readOnly = false, ...restProps },
   ref
 ) {
   const { theme } = useUnistyles();
@@ -122,10 +96,7 @@ export const InputText = forwardRef<TextInput, Props & TextInputProps>(function 
     }
 
     return {
-      transform: [
-        { translateY: withTiming(translateY, animationConfig) },
-        { scale: withTiming(scale, animationConfig) },
-      ],
+      transform: [{ translateY: withTiming(translateY, animationConfig) }, { scale: withTiming(scale, animationConfig) }],
     };
   }, [size]);
 
@@ -135,7 +106,7 @@ export const InputText = forwardRef<TextInput, Props & TextInputProps>(function 
   }, [onPress]);
 
   const handleFocus = useCallback(
-    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    (e: NativeSyntheticEvent<TargetedEvent>) => {
       setIsFocused(true);
       onFocus?.(e);
     },
@@ -192,22 +163,14 @@ export const InputText = forwardRef<TextInput, Props & TextInputProps>(function 
 const styles = StyleSheet.create((theme) => {
   const containerPaddingVertical = theme.spacing.xsmall;
   const getTypography = (size: Size) =>
-    size === 'small'
-      ? theme.textVariants.body3
-      : size === 'medium'
-        ? theme.textVariants.body2
-        : theme.textVariants.body1;
+    size === 'small' ? theme.textVariants.body3 : size === 'medium' ? theme.textVariants.body2 : theme.textVariants.body1;
   const getHeight = (size: Size) => (size === 'small' ? 40 : size === 'medium' ? 48 : 56);
 
   return {
     container: ({ active, error, size }: { active: boolean; error: boolean; size: Size }) => ({
       borderRadius: theme.borderRadius.medium,
       borderWidth: 1,
-      borderColor: active
-        ? theme.colors.contentAccentSecondary
-        : error
-          ? theme.colors.sentimentNegative
-          : theme.colors.borderNeutralSecondary,
+      borderColor: active ? theme.colors.contentAccentSecondary : error ? theme.colors.sentimentNegative : theme.colors.borderNeutralSecondary,
       backgroundColor: theme.colors.backgroundElevated,
       paddingVertical: containerPaddingVertical,
       paddingHorizontal: theme.spacing.small,
