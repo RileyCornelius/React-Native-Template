@@ -11,7 +11,7 @@ import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, us
 
 export default function Layout() {
   const { theme, rt } = useUnistyles();
-  const { storedTheme } = useTheme();
+  const { storedTheme, isDarkMode } = useTheme();
 
   const fonts = useFonts({
     Inter_400Regular,
@@ -24,22 +24,26 @@ export default function Layout() {
     return null;
   }
 
+  const navigationTheme = {
+    ...(rt.themeName === 'dark' ? DarkTheme : DefaultTheme),
+    colors: {
+      ...(rt.themeName === 'dark' ? DarkTheme.colors : DefaultTheme.colors),
+      primary: theme.colors.interactivePrimary,
+      background: theme.colors.backgroundScreen,
+      text: theme.colors.typography,
+      border: theme.colors.borderNeutral,
+    },
+  };
+
   return (
     <GestureHandlerRootView>
       <KeyboardProvider>
-        <Stack
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: theme.colors.background,
-            },
-            headerTitleStyle: {
-              color: theme.colors.typography,
-            },
-            headerTintColor: theme.colors.typography,
-          }}>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
-        <StatusBar style={storedTheme === 'system' ? 'auto' : storedTheme === 'dark' ? 'light' : 'dark'} />
+        <ThemeProvider value={navigationTheme}>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+          <StatusBar style={storedTheme === 'system' ? 'auto' : storedTheme === 'dark' ? 'light' : 'dark'} />
+        </ThemeProvider>
       </KeyboardProvider>
     </GestureHandlerRootView>
   );

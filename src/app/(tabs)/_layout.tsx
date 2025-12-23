@@ -16,8 +16,6 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof FontAwesome>['nam
 }
 
 export default function Layout() {
-  const { theme, rt } = useUnistyles();
-
   return (
     <Tabs
       screenOptions={{
