@@ -13,13 +13,10 @@ import { Divider } from './craft-ui/Divider';
 // import { Text } from 'react-native';
 
 function ThemeRadioOption({ value: theme }: { value: 'light' | 'dark' | 'system' }) {
-  const { storedTheme, setTheme } = useTheme();
+  const { storedTheme, setStoredTheme } = useTheme();
 
   return (
-    <Pressable
-      onPress={() => {
-        setTheme(theme);
-      }}>
+    <Pressable onPress={() => setStoredTheme(theme)}>
       <XView style={{ justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row' }}>
         <Text>{theme}</Text>
         <View pointerEvents="none">
