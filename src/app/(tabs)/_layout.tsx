@@ -35,9 +35,9 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="details"
+        name="inbox"
         options={{
-          title: 'Details',
+          title: 'Inbox',
           tabBarIcon: ({ color }) => <TabBarIcon name="envelope" color={color} />,
         }}
       />
