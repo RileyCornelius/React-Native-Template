@@ -35,7 +35,7 @@ const styles = StyleSheet.create((theme) => ({
     height: 1,
     marginVertical: 30,
     width: '80%',
-    backgroundColor: theme.colors.limedSpruce,
+    backgroundColor: theme.colors.contentSecondary,
   },
   title: {
     fontSize: 20,

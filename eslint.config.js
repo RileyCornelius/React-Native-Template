@@ -13,15 +13,16 @@ module.exports = defineConfig([
   {
     plugins: {
       'react-hooks': reactHooks,
+      'react-compiler': reactCompiler,
     },
     rules: {
-      // react-hooks
+      // react
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      // React Compiler rules (enables optimization hints)
       'react-compiler/react-compiler': 'error',
       'react/display-name': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
+      // react native
       'no-restricted-imports': [
         'error',
         {
@@ -43,36 +44,22 @@ module.exports = defineConfig([
             caseInsensitive: true,
           },
           'newlines-between': 'always',
-          'groups': [['builtin', 'external'], 'internal', 'unknown'],
-          'distinctGroup': false,
+          'groups': ['builtin', 'external', 'internal'],
           'pathGroups': [
-            {
-              pattern: 'react',
-              group: 'external',
-              position: 'before',
-            },
-            {
-              pattern: 'react-native',
-              group: 'external',
-              position: 'before',
-            },
-            {
-              pattern: 'react-*',
-              group: 'external',
-              position: 'before',
-            },
-            {
-              pattern: 'expo-*',
-              group: 'external',
-              position: 'before',
-            },
-            {
-              pattern: '@/**',
-              group: 'internal',
-              position: 'after',
-            },
+            // Group 1: React ecosystem (comes first in builtin)
+            { pattern: 'react', group: 'builtin', position: 'before' },
+            { pattern: 'react-dom', group: 'builtin', position: 'before' },
+            { pattern: 'react-native', group: 'builtin', position: 'before' },
+            { pattern: 'react-native-**', group: 'builtin', position: 'before' },
+            { pattern: '@react-*/**', group: 'builtin', position: 'before' },
+            { pattern: 'expo', group: 'builtin' },
+            { pattern: 'expo-**', group: 'builtin' },
+            { pattern: '@expo/**', group: 'builtin' },
+            // Group 2: Internal (@/**) - must come BEFORE @expo to avoid conflicts
+            { pattern: '@/**', group: 'internal' },
           ],
-          'pathGroupsExcludedImportTypes': ['react', 'react-native', 'react-*', 'expo-*'],
+          'pathGroupsExcludedImportTypes': [],
+          'distinctGroup': false,
         },
       ],
       'import/newline-after-import': 1,
