@@ -5,16 +5,13 @@ import { UnistylesRuntime } from 'react-native-unistyles';
 
 import { useAtom } from 'jotai';
 
-import { themeAtom, useTheme } from '@/store/theme';
+import { useTheme } from '@/hooks/use-theme';
 
 import { Card } from './craft-ui/Card';
 import { Divider } from './craft-ui/Divider';
-import { PressableScale } from './craft-ui/PressableScale';
 import { Radio } from './craft-ui/Radio';
 import { Text } from './craft-ui/Text';
 import { XView } from './ui/XView';
-
-// import { Text } from 'react-native';
 
 function ThemeRadioOption({ value: theme }: { value: 'light' | 'dark' | 'system' }) {
 	const { storedTheme, setStoredTheme } = useTheme();
