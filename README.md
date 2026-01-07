@@ -1,50 +1,39 @@
 # React Native Expo Template
 
-A React Native Expo template with Unistyles theming, pre-built UI components.
+A React Native Expo template with Unistyles theming, Jotai state management, and 20+ pre-built UI components.
 
 ## 🛠 Tech Stack
 
-| Category   | Technology                     |
-| ---------- | ------------------------------ |
-| Framework  | Expo SDK 54, React Native 0.81 |
-| Language   | TypeScript                     |
-| Routing    | Expo Router 6                  |
-| Styling    | react-native-unistyles 3       |
-| State      | Jotai                          |
-| Storage    | react-native-mmkv              |
-| Animations | Moti, Reanimated 4             |
-| Gestures   | react-native-gesture-handler   |
-| Images     | expo-image                     |
-| HTTP       | Axios                          |
-| Icons      | @expo/vector-icons             |
-| Fonts      | @expo-google-fonts             |
-| Components | Craft UI 20+ pre-built         |
-| Lint       | ESLint                         |
-| Format     | Prettier                       |
+| Category   | Technology                                                                             |
+| ---------- | -------------------------------------------------------------------------------------- |
+| Framework  | Expo SDK 54, React 19.1, React Native 0.81 (New Architecture & React Compiler enabled) |
+| Language   | TypeScript 5.9                                                                         |
+| Routing    | Expo Router 6 (File-based, Typed)                                                      |
+| Styling    | react-native-unistyles 3 (Theming & Responsive styles)                                 |
+| State      | Jotai (Atomic state)                                                                   |
+| Storage    | react-native-mmkv (High-performance persistent storage)                                |
+| Animations | Reanimated 4, Moti                                                                     |
+| Gestures   | react-native-gesture-handler 2                                                         |
+| Keyboard   | react-native-keyboard-controller                                                       |
+| Media      | expo-image, expo-video, expo-blur                                                      |
+| Icons      | @expo/vector-icons (Ionicons)                                                          |
+| Utils      | neverthrow (Result type), TanStack Query (Data fetching), React Pacer                  |
+| Components | Craft UI (20+ pre-built modular components)                                            |
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) 24 (required for Expo)
-- [Bun](https://bun.sh/) (recommended) or npm/yarn
-- [Expo](https://docs.expo.dev/get-started/installation/)
-- [Android Emulator](https://docs.expo.dev/workflow/android-studio-emulator/) or [iOS Simulator](https://docs.expo.dev/workflow/ios-simulator/) (Mac only)
-
-## For Windows with Android Emulator
-
-Follow the this guide: [Setup your Environment](https://docs.expo.dev/get-started/set-up-your-environment/?mode=development-build&platform=android&device=simulated&buildEnv=local)
-
-1. Make sure that `Android Emulator` and `Development Build` are selected
-2. 
-
+- [Node.js](https://nodejs.org/) 24+ (required for Expo)
+- [Bun](https://bun.sh/) (recommended)
+- [Expo Go](https://expo.dev/go) or [Development Build](https://docs.expo.dev/development/introduction/)
+- [Android Emulator](https://docs.expo.dev/workflow/android-studio-emulator/) or [iOS Simulator](https://docs.expo.dev/workflow/ios-simulator/)
 
 ### Installation
 
-1. **Clone or use this template**
+1. **Clone the template**
 
    ```bash
-   # Clone the repository
    git clone https://github.com/RileyCornelius/React-Native-Template.git my-app
    cd my-app
    ```
@@ -58,102 +47,97 @@ Follow the this guide: [Setup your Environment](https://docs.expo.dev/get-starte
 3. **Check installation**
 
    ```bash
-   bun expo-install
-   bun doctor
+   bun run doctor
    ```
 
-4. **Generate native projects**
+4. **Generate native projects (Required for some packages)**
 
    ```bash
-   bun prebuild
+   bun run prebuild
    ```
 
 5. **Start the development server**
 
    ```bash
    # Run on Android
-   bun android
+   bun run android
 
    # Run on iOS
-   bun ios
+   bun run ios
 
    # Run on Web
-   bun web
+   bun run web
    ```
 
 ## 📁 Project Structure
 
 ```text
 src/
-├── app/                    # Expo Router screens (file-based routing)
-│   ├── _layout.tsx         # Root layout with navigation
-│   ├── index.tsx           # Home screen (/)
-│   ├── details.tsx         # Details screen (/details)
-│   └── +not-found.tsx      # 404 screen
+├── app/              # Expo Router screens (file-based routing)
+│   ├── (tabs)/       # Main tab navigation
+│   ├── _layout.tsx   # Root layout with providers
+│   └── settings.tsx  # Example screen
 ├── components/
-│   ├── craft-ui/           # Pre-built UI components
-│   └── ui/                 # Custom/extended components
-├── store/                  # Jotai atoms (state management)
-└── themes/                 # Unistyles theme configuration
+│   ├── common/       # Shared business components
+│   ├── craft-ui/     # Modular, production-ready UI components
+│   └── ui/           # Project-specific UI overrides
+├── constants/        # Shared constants & atom keys
+├── hooks/            # Custom React hooks
+├── services/         # API clients & local storage (MMKV)
+├── store/            # Jotai atoms for state management
+├── theme/            # Unistyles configuration & theme tokens
+└── types/            # Shared TypeScript definitions
 assets/
-├── fonts/                  # Custom fonts
-└── images/                 # App icons, splash screen, etc
+└── images/           # App icons, splash screen, etc.
 ```
 
 ## 📜 Available Scripts
 
-| Command                 | Description                         |
-| ----------------------- | ----------------------------------- |
-| `bun run start`         | Start dev server with dev client    |
-| `bun run android`       | Run locally Android device/emulator |
-| `bun run android:build` | Builds for android using eas        |
-| `bun run ios`           | Run on iOS simulator                |
-| `bun run web`           | Run on web browser                  |
-| `bun run prebuild`      | Generate native projects (clean)    |
-| `bun run tsc`           | Type check without emitting         |
-| `bun run lint`          | Check for linting errors            |
-| `bun run format`        | Auto-fix linting and formatting     |
-| `bun run expo-install`  | Fix Expo dependency versions        |
-| `bun run doctor`        | Run Expo doctor diagnostics         |
+| Command               | Description                               |
+| --------------------- | ----------------------------------------- |
+| `bun run start`       | Start dev server with dev client          |
+| `bun run android`     | Run locally on Android device/emulator    |
+| `bun run ios`         | Run locally on iOS simulator              |
+| `bun run web`         | Run on web browser                        |
+| `bun run prebuild`    | Generate native projects (clean prebuild) |
+| `bun run tsc`         | Type check the project                    |
+| `bun run lint`        | Check for linting errors                  |
+| `bun run format`      | Auto-fix linting and formatting           |
+| `bun run install-fix` | Fix Expo dependency versions              |
+| `bun run doctor`      | Run Expo doctor diagnostics               |
+| `bun run clean`       | Remove build artifacts and node_modules   |
 
-### Theme Structure
+## 🎨 Theme & Styling
 
-The theme provides consistent design tokens:
+This project uses **react-native-unistyles** for theming.
 
-- `theme.colors` - Color palette (adapts to light/dark)
-- `theme.spacing` - Spacing scale (xs, sm, md, lg, xl)
-- `theme.radius` - Border radius values
-- `theme.fonts` - Font families
+- **Tokens**: Defined in `src/theme/`, including `colors`, `spacing`, `radius`, `fonts`, and `breakpoints`.
+- **Adaptive**: Supports Light/Dark themes and system preference.
+- **Usage**:
+  ```tsx
+  const stylesheet = StyleSheet.create((theme) => ({
+  	container: {
+  		flex: 1,
+  		backgroundColor: theme.colors.background,
+  		padding: theme.spacing.md,
+  	},
+  }));
+  ```
 
-## 🧩 Components
+## 🧩 Craft UI Components
 
-### Craft UI Components
+A collection of pre-built, highly customizable components located in `src/components/craft-ui/`:
 
-Pre-built, production-ready components in `src/components/craft-ui/`:
+- **Layout**: `HStack`, `VStack`, `Center`, `Divider`
+- **Feedback**: `Badge`, `BottomSheet`, `ContextMenu`, `Modal`
+- **Inputs**: `Button`, `ButtonRound`, `Checkbox`, `Radio`, `Switch`, `Slider`, `SliderDual`, `InputText`, `InputSearch`, `InputOTP`, `Counter`, `PasscodeEntry`
+- **Display**: `Avatar`, `Card`, `ListItem`, `Text`, `PhotoCarousel`
+- **Interactions**: `PressableScale`
 
-- **Avatar** - User profile images
-- **Button** - Primary action buttons
-- **ButtonRound** - Circular icon buttons
-- **Card** - Content containers
-- **Checkbox** - Selection controls
-- **Switch** - Toggle switches
-- **Slider** / **SliderDual** - Range inputs
-- **Radio** - Radio buttons
-- **InputText** / **InputSearch** / **InputOTP** - Text inputs
-- **BottomSheet** - Modal sheets
-- **ContextMenu** - Long-press menus
-- **ListItem** - List row items
-- **Divider** - Visual separators
-- **PhotoCarousel** - Image galleries
-- **PasscodeEntry** - PIN input
-- **Counter** - Increment/decrement
-- **Text** - Themed typography
+## 📦 State Management
 
-## Installing Packages
-
-```bash
-npx expo install <package-name>
-```
+- **Jotai**: Used for atomic, decoupled state management. Atoms are located in `src/store/`.
+- **MMKV**: High-performance persistent storage integrated with Jotai using `atomWithMMKV`.
 
 ## 📱 Building for Production
 
@@ -166,15 +150,11 @@ npm install --global eas-cli
 # Configure EAS
 eas build:configure
 
-# Build for Android
-eas build --profile development --platform android
+# Build for development/production
+eas build --platform android
+eas build --platform ios
 
-# Build for iOS
-eas build --profile development --platform ios
-
-# Build locally for Android
-expo run:android
-
-# Build locally for iOS
-expo run:ios
+# Run development build
+eas build:run --profile development --platform android --latest
+eas build:run --profile development --platform ios --latest
 ```

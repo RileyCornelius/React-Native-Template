@@ -12,7 +12,7 @@
 src/
   ├── app/              ## expo router screens (file-based routing)
   ├── components/
-  │   └── ui/           ## custom/extended ui components
+  │   └── craft-ui/     ## custom/extended ui components
   ├── constants/        ## shared const vars
   ├── services/         ## API clients, business logic
   ├── hooks/            ## react hooks
@@ -45,8 +45,33 @@ assets/
 
 ### UI Components
 
-- Use base ui components in components/ui (Avatar, Button, ButtonRound, Card, Checkbox, Switch, Slider, PressableScale, etc.)
 - @expo/vector-icons (Ionicons)
+- Use ui components in components/craft-ui:
+  - Avatar
+  - Badge
+  - BottomSheet
+  - Button
+  - ButtonRound
+  - Card
+  - Center
+  - Checkbox
+  - ContextMenu
+  - Counter
+  - Divider
+  - HStack
+  - InputOTP
+  - InputSearch
+  - InputText
+  - ListItem
+  - PasscodeEntry
+  - PhotoCarousel
+  - PressableScale
+  - Radio
+  - Slider
+  - SliderDual
+  - Switch
+  - Text
+  - VStack
 
 ### Animations & Gestures
 
