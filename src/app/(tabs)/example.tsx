@@ -14,6 +14,7 @@ import { Checkbox } from '@/components/craft-ui/Checkbox';
 import { ContextMenu } from '@/components/craft-ui/ContextMenu';
 import { Counter } from '@/components/craft-ui/Counter';
 import { Divider } from '@/components/craft-ui/Divider';
+import { HStack } from '@/components/craft-ui/HStack';
 import { InputOTP } from '@/components/craft-ui/InputOTP';
 import { InputSearch } from '@/components/craft-ui/InputSearch';
 import { InputText } from '@/components/craft-ui/InputText';
@@ -26,9 +27,8 @@ import { Slider } from '@/components/craft-ui/Slider';
 import { SliderDual } from '@/components/craft-ui/SliderDual';
 import { Switch } from '@/components/craft-ui/Switch';
 import { Text } from '@/components/craft-ui/Text';
+import { VStack } from '@/components/craft-ui/VStack';
 import BottomSheetModal from '@/components/Modal';
-import { XView } from '@/components/ui/XView';
-import { YView } from '@/components/ui/YView';
 
 function SectionCard({ title, children }: { title: string; children: React.ReactNode }) {
 	return (
@@ -63,29 +63,29 @@ export default function Example() {
 			<ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
 				{/* Text */}
 				<SectionCard title="Text">
-					<YView gap={8}>
+					<VStack gap={8}>
 						<Text variant="body3">Body 3</Text>
 						<Text variant="body2">Body 2</Text>
 						<Text variant="body1">Body 1</Text>
 						<Text variant="heading3">Heading 3</Text>
 						<Text variant="heading2">Heading 2</Text>
 						<Text variant="heading1">Heading 1</Text>
-					</YView>
+					</VStack>
 				</SectionCard>
 
 				{/* Avatar */}
 				<SectionCard title="Avatar">
-					<XView gap={16}>
+					<HStack gap={16}>
 						<Avatar fallbackInitials="SM" size="small" />
 						<Avatar fallbackInitials="MD" size="medium" showOnlineIndicator />
 						<Avatar fallbackInitials="LG" size="large" fallbackColor={2} />
-					</XView>
+					</HStack>
 				</SectionCard>
 
 				{/* Buttons */}
 				<SectionCard title="Buttons">
-					<YView gap={8}>
-						<YView gap={8}>
+					<VStack gap={8}>
+						<VStack gap={8}>
 							<Button onPress={() => {}} variant="primary" animationConfig={ButtonAnimationConfig}>
 								Primary
 							</Button>
@@ -101,9 +101,9 @@ export default function Example() {
 							<Button onPress={() => {}} disabled>
 								Disabled
 							</Button>
-						</YView>
+						</VStack>
 						<Text variant="heading3">Icon Buttons</Text>
-						<XView gap={16}>
+						<HStack gap={16}>
 							<ButtonRound
 								onPress={() => {}}
 								renderContent={({ iconColor, iconSize }) => <Ionicons name="add" size={iconSize} color={iconColor} />}
@@ -113,13 +113,13 @@ export default function Example() {
 								onPress={() => {}}
 								renderContent={({ iconColor, iconSize }) => <Ionicons name="scan" size={iconSize} color={iconColor} />}
 							/>
-						</XView>
-					</YView>
+						</HStack>
+					</VStack>
 				</SectionCard>
 
 				{/* Inputs */}
 				<SectionCard title="Inputs">
-					<YView gap={8}>
+					<VStack gap={8}>
 						<InputText placeholder="Regular Input" value={textValue} onChangeText={setTextValue} />
 						<InputSearch
 							placeholder="Search..."
@@ -127,30 +127,30 @@ export default function Example() {
 							itemRight={<ButtonRound renderContent={({ iconColor, iconSize }) => <Ionicons name="send" size={iconSize} color={iconColor} />} />}
 							onChangeText={setSearchValue}
 						/>
-					</YView>
+					</VStack>
 				</SectionCard>
 
 				{/* Selection Controls */}
 				<SectionCard title="Selection Controls">
-					<YView gap={8}>
-						<XView gap={16} style={{ alignItems: 'center' }}>
+					<VStack gap={8}>
+						<HStack gap={16} style={{ alignItems: 'center' }}>
 							<Text>Checkbox:</Text>
 							<Checkbox checked={checkboxChecked} onPress={setCheckboxChecked} />
-						</XView>
-						<XView gap={16} style={{ alignItems: 'center' }}>
+						</HStack>
+						<HStack gap={16} style={{ alignItems: 'center' }}>
 							<Text>Radio:</Text>
 							<Radio checked={radioChecked} onPress={setRadioChecked} />
-						</XView>
-						<XView gap={16} style={{ alignItems: 'center' }}>
+						</HStack>
+						<HStack gap={16} style={{ alignItems: 'center' }}>
 							<Text>Switch:</Text>
 							<Switch value={switchValue} onValueChange={setSwitchValue} />
-						</XView>
-					</YView>
+						</HStack>
+					</VStack>
 				</SectionCard>
 
 				{/* Sliders & Counter */}
 				<SectionCard title="Sliders & Counter">
-					<YView gap={8} style={{ alignItems: 'center' }}>
+					<VStack gap={8} style={{ alignItems: 'center' }}>
 						<Text variant="heading2">Sliders & Counter</Text>
 						<Text>Slider: {Math.round(sliderValue)}</Text>
 						<Slider min={0} max={100} initialValue={sliderValue} onValueChange={setSliderValue} />
@@ -161,12 +161,12 @@ export default function Example() {
 						<View style={{ marginTop: 6, width: 120, backgroundColor: '#faf9f7', padding: 8, borderRadius: 12 }}>
 							<Counter value={counterValue} onValueChange={setCounterValue} />
 						</View>
-					</YView>
+					</VStack>
 				</SectionCard>
 
 				{/* List Items & Card */}
 				<SectionCard title="List Items & Card">
-					<YView gap={8}>
+					<VStack gap={8}>
 						<ListItem text="List Item 1" textBelow="Description" itemRight={<Ionicons name="chevron-forward" size={20} />} />
 						<Divider />
 						<ListItem text="List Item 1" textBelow="Description" itemRight={<Ionicons name="chevron-forward" size={20} />} />
@@ -175,12 +175,12 @@ export default function Example() {
 						<Card style={{ marginTop: 6, padding: 16, backgroundColor: '#faf9f7' }}>
 							<ListItem text="List Item 2" itemLeft={<Avatar fallbackInitials="AB" size="small" />} />
 						</Card>
-					</YView>
+					</VStack>
 				</SectionCard>
 
 				{/* Context Menu */}
 				<SectionCard title="Context Menu">
-					<YView gap={8} style={{ alignItems: 'center' }}>
+					<VStack gap={8} style={{ alignItems: 'center' }}>
 						<ContextMenu
 							items={[
 								{ type: 'item', id: '1', label: 'Option 1', onPress: () => Alert.alert('Option 1') },
@@ -193,7 +193,7 @@ export default function Example() {
 								</View>
 							)}
 						/>
-					</YView>
+					</VStack>
 				</SectionCard>
 
 				{/* Photo Carousel */}
@@ -210,7 +210,7 @@ export default function Example() {
 				</SectionCard>
 
 				{/* Pressable Scale */}
-				<YView gap={8}>
+				<VStack gap={8}>
 					<Text variant="heading2">Pressable Scale</Text>
 					<PressableScale
 						style={{ padding: 20, backgroundColor: '#faf9f7', borderRadius: 16 }}
@@ -218,12 +218,12 @@ export default function Example() {
 						animationConfig={ButtonAnimationConfig}>
 						<Text>Press me!</Text>
 					</PressableScale>
-				</YView>
+				</VStack>
 				{/* Bottom Sheet */}
 				<SectionCard title="Bottom Sheet">
-					<YView gap={8}>
+					<VStack gap={8}>
 						<Button onPress={toggleBottomSheet}>Open Bottom Sheet</Button>
-					</YView>
+					</VStack>
 				</SectionCard>
 
 				<BottomSheet visible={isBottomSheetOpen} onRequestClose={toggleBottomSheet} onClose={() => {}} enableSwipeToClose={true} showHandleBar={true}>

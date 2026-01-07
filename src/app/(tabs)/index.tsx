@@ -1,13 +1,14 @@
+import React from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { useRouter } from 'expo-router';
-import { MotiView } from 'moti';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
+
+import { MotiView } from 'moti';
 
 import { Button } from '@/components/craft-ui/Button';
-import { Text } from '@/components/craft-ui/Text';
-import React from 'react';
 import { Center } from '@/components/craft-ui/Center';
+import { Text } from '@/components/craft-ui/Text';
 
 export default function Home() {
 	const router = useRouter();

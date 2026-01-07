@@ -7,11 +7,11 @@ import { useAtom } from 'jotai';
 
 import { useTheme } from '@/hooks/use-theme';
 
-import { Card } from './craft-ui/Card';
-import { Divider } from './craft-ui/Divider';
-import { HStack } from './craft-ui/HStack';
-import { Radio } from './craft-ui/Radio';
-import { Text } from './craft-ui/Text';
+import { Card } from '../craft-ui/Card';
+import { Divider } from '../craft-ui/Divider';
+import { HStack } from '../craft-ui/HStack';
+import { Radio } from '../craft-ui/Radio';
+import { Text } from '../craft-ui/Text';
 
 function ThemeRadioOption({ value: theme }: { value: 'light' | 'dark' | 'system' }) {
 	const { storedTheme, setStoredTheme } = useTheme();
