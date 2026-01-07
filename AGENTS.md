@@ -1,17 +1,10 @@
 # React Native/Expo Project
 
-You are an expert in TypeScript, React Native, Expo, and Mobile UI development.
-
-Every time you choose to apply a rule(s), explicitly state the rule(s) in the output. You can abbreviate the rule description to a single word or phrase.
-
 ## Code Style and Structure
 
-- Write concise, technical TypeScript code with accurate examples
 - Use functional and declarative programming patterns; avoid classes
 - Prefer iteration and modularization over code duplication
-- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError)
 - Ensure components are modular, reusable, and maintainable
-- Component Modularity: Break down components into smaller, reusable pieces. Keep components focused on a single responsibility
 
 ## Project Structure
 
@@ -19,25 +12,21 @@ Every time you choose to apply a rule(s), explicitly state the rule(s) in the ou
 src/
   ├── app/              ## expo router screens (file-based routing)
   ├── components/
-  │   ├── craft-ui/     ## pre-built UI components (Avatar, Button, Card, etc.)
   │   └── ui/           ## custom/extended ui components
   ├── constants/        ## shared const vars
   ├── services/         ## API clients, business logic
+  ├── hooks/            ## react hooks
   ├── store/            ## jotai atoms for state management
-  ├── themes/           ## unistyles theme configuration
+  ├── theme/            ## unistyles theme configuration
   └── types/            ## shared TypeScript types
 assets/
-  ├── fonts/            ## custom fonts
   └── images/           ## image assets (icons, splash, etc.)
 ```
 
 ## Tools
 
-Default to using Bun instead of Node.js.
-
+- Use `bun` instead of `npm`
 - Use `bun expo install <package-name>` for installing expo-compatible packages
-- Use `bun add <package-name>` for installing other packages
-- Use `bun run <script>` instead of npm/yarn run
 - Use `bun tsc` for type checking
 
 ## Tech Stack
@@ -56,21 +45,17 @@ Default to using Bun instead of Node.js.
 
 ### UI Components
 
-- Pre-built craft-ui components (Avatar, Button, ButtonRound, Card, Checkbox, Switch, Slider, PressableScale, etc.)
+- Use base ui components in components/ui (Avatar, Button, ButtonRound, Card, Checkbox, Switch, Slider, PressableScale, etc.)
 - @expo/vector-icons (Ionicons)
-- expo-blur
-- react-native-svg
 
 ### Animations & Gestures
 
-- moti (declarative animations with MotiView)
 - react-native-reanimated v4
 - react-native-gesture-handler v2
-- expo-haptics (tactile feedback)
 
 ### Navigation
 
-- expo-router v6 (built on React Navigation v7)
+- expo-router v6
 - Drawer navigation (root level)
 - Tab navigation (nested)
 - @react-navigation/drawer
@@ -80,12 +65,10 @@ Default to using Bun instead of Node.js.
 
 - react-native-mmkv (persistent storage)
 - jotai (state management)
-- axios (HTTP client)
-- neverthrow (Result-based error handling)
 
 ### Media
 
-- expo-image (optimized images with caching)
+- expo-image
 - expo-video
 
 ### Keyboard
@@ -95,70 +78,23 @@ Default to using Bun instead of Node.js.
 ## Naming Conventions
 
 - Favor named exports for components and utilities
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError)
 - Use PascalCase for component files (e.g., `Button.tsx`, `Avatar.tsx`)
-- Use camelCase for utility/hook files (e.g., `useAuth.ts`)
-- Use kebab-case for route files (e.g., `user-profile.tsx`) - this is Expo Router best practice
-- Use `@/` for importing internal files. Defined in tsconfig: `"paths": {"@/*": ["./src/*", "./"]}`
+- Use kebab-case for all other files (e.g., `user-profile.tsx`)
 
 ## TypeScript Usage
 
-- Use `type` for simple types eg. `type theme = 'light'| 'dark'` and `interface` for object shapes
 - Avoid enums; use const objects with 'as const' assertion
 - Use functional components with TypeScript types
-- Use absolute imports for all files @/...
-- Avoid try/catch blocks unless there's good reason to translate or handle error in that abstraction
+- Use `@/` for importing internal files
 
 ## UI and Styling with Unistyles
 
 - Use `StyleSheet.create` from `react-native-unistyles` for all styles
 - Access theme values via the style function parameter: `StyleSheet.create((theme) => ({ ... }))`
-- Use theme tokens: `theme.colors`, `theme.spacing`, `theme.borderRadius`, `theme.textVariants`, `theme.fontSizes`, `theme.fonts`
-- Support both light and dark themes - use theme values, not hardcoded colors
+- Use `paddingBottom: rt.insets.bottom` for safearea
+- Use theme tokens: `theme.colors`, `theme.spacing`, `theme.borderRadius`, `theme.textVariants`, `theme.fontSizes`
 - Use `useUnistyles()` hook to access theme in components when needed but prefer to do all styling in StyleSheet
-
-Example:
-
-```tsx
-import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-
-const MyComponent = (): React.ReactElement => {
-  const { theme } = useUnistyles();
-  // Use theme.colors.interactivePrimary for dynamic values
-  return <View style={styles.container} />;
-};
-
-const styles = StyleSheet.create((theme) => ({
-  container: {
-    backgroundColor: theme.colors.backgroundScreen,
-    padding: theme.spacing.medium,
-    borderRadius: theme.borderRadius.large,
-  },
-  text: {
-    ...theme.textVariants.body1,
-    color: theme.colors.contentPrimary,
-  },
-}));
-```
-
-## Components
-
-### Using craft-ui components
-
-Import pre-built components from `@/components/craft-ui`:
-
-```tsx
-import { Avatar } from '@/components/craft-ui/Avatar';
-import { Card } from '@/components/craft-ui/Card';
-```
-
-### Using ui components
-
-Import custom/extended components from `@/components/ui`:
-
-```tsx
-import { Button } from '@/components/ui/Button';
-import { Container } from '@/components/ui/Container';
-```
 
 ## State Management
 
@@ -167,33 +103,6 @@ import { Container } from '@/components/ui/Container';
 - Derive computed state using derived atoms
 - Implement proper cleanup in useEffect hooks
 - Use atomWithMMKV for persisted state when needed
-
-## Expo Router Navigation
-
-Use Expo Router hooks for navigation instead of React Navigation props:
-
-- Prefer `useRouter` hook over `<Link>` component
-- Use `useLocalSearchParams` when basing params
-
-## Animations
-
-- Use moti for declarative animations
-- Use react-native-reanimated v3 for complex/custom animations
-- Use react-native-gesture-handler v2 for gesture-based interactions
-- Use expo-haptics for tactile feedback
-
-## Images
-
-- Use expo-image instead of React Native's Image component for better performance and caching
-- Always specify width and height for remote images
-- Use contentFit prop for image scaling behavior
-
-## Lists Performance
-
-- Use @shopify/flash-list instead of FlatList for large lists
-- Implement `getItemLayout` when item heights are known
-- Use `estimatedItemSize` for FlashList
-- Avoid anonymous functions in renderItem, extract to component
 
 ## Error Handling
 
@@ -205,8 +114,7 @@ Use Expo Router hooks for navigation instead of React Navigation props:
 
 ## Environment Variables
 
-- Use EXPO*PUBLIC*\* prefix for client-side environment variables
-- Access via process.env.EXPO*PUBLIC*\*\*
+- Use `EXPO_PUBLIC_*` prefix for client-side environment variables
 
 ## Performance Best Practices
 
