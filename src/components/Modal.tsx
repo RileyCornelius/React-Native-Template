@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { Button } from '@/components/craft-ui/Button';
-import { Counter } from '@/components/craft-ui/Counter';
-import { Divider } from '@/components/craft-ui/Divider';
-import { HStack } from '@/components/craft-ui/HStack';
-import { Switch } from '@/components/craft-ui/Switch';
-import { Text } from '@/components/craft-ui/Text';
-import { VStack } from '@/components/craft-ui/VStack';
+import { Button } from '@/components/ui/Button';
+import { Counter } from '@/components/ui/Counter';
+import { Divider } from '@/components/ui/Divider';
+import { HStack } from '@/components/ui/HStack';
+import { Switch } from '@/components/ui/Switch';
+import { Text } from '@/components/ui/Text';
+import { VStack } from '@/components/ui/VStack';
 
 export default function ExampleModal() {
 	const [value, setValue] = useState(0);

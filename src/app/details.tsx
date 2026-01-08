@@ -2,11 +2,11 @@ import { View, ScrollView } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
-import { Avatar } from '@/components/craft-ui/Avatar';
-import { Divider } from '@/components/craft-ui/Divider';
-import { HStack } from '@/components/craft-ui/HStack';
-import { Text } from '@/components/craft-ui/Text';
-import { VStack } from '@/components/craft-ui/VStack';
+import { Avatar } from '@/components/ui/Avatar';
+import { Divider } from '@/components/ui/Divider';
+import { HStack } from '@/components/ui/HStack';
+import { Text } from '@/components/ui/Text';
+import { VStack } from '@/components/ui/VStack';
 
 export default function Details() {
 	const params = useLocalSearchParams();

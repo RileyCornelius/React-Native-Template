@@ -6,9 +6,9 @@ import { useRouter } from 'expo-router';
 
 import { MotiView } from 'moti';
 
-import { Button } from '@/components/craft-ui/Button';
-import { Center } from '@/components/craft-ui/Center';
-import { Text } from '@/components/craft-ui/Text';
+import { Button } from '@/components/ui/Button';
+import { Center } from '@/components/ui/Center';
+import { Text } from '@/components/ui/Text';
 
 export default function Home() {
 	const router = useRouter();
@@ -47,7 +47,7 @@ export default function Home() {
 					This is your new React Native app with Expo, Unistyles, and more.
 				</Text>
 				<Center>
-					<Text>Hello</Text>
+					<Text>Hello 👋</Text>
 				</Center>
 			</MotiView>
 		</View>

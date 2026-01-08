@@ -33,6 +33,8 @@ A React Native Expo template with Unistyles theming, Jotai state management, and
 
 1. **Clone the template**
 
+   On Windows ensure the project is in the shorts folder path possible. If path is too long Android builds will error due to Windows 255 char path limit.
+
    ```bash
    git clone https://github.com/RileyCornelius/React-Native-Template.git my-app
    cd my-app
@@ -42,6 +44,7 @@ A React Native Expo template with Unistyles theming, Jotai state management, and
 
    ```bash
    bun install
+
    ```
 
 3. **Check installation**
@@ -126,7 +129,7 @@ This project uses **react-native-unistyles** for theming.
 
 ## 🧩 Craft UI Components
 
-A collection of pre-built, highly customizable components located in `src/components/craft-ui/`:
+A collection of pre-built, highly customizable components located in `src/components/ui/`:
 
 - **Layout**: `HStack`, `VStack`, `Center`, `Divider`
 - **Feedback**: `Badge`, `BottomSheet`, `ContextMenu`, `Modal`

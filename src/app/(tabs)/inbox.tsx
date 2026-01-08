@@ -4,13 +4,13 @@ import { StyleSheet } from 'react-native-unistyles';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
-import { Avatar } from '@/components/craft-ui/Avatar';
-import { Badge, BadgeText } from '@/components/craft-ui/Badge';
-import { Button } from '@/components/craft-ui/Button';
-import { HStack } from '@/components/craft-ui/HStack';
-import { InputSearch } from '@/components/craft-ui/InputSearch';
-import { Text } from '@/components/craft-ui/Text';
-import { VStack } from '@/components/craft-ui/VStack';
+import { Avatar } from '@/components/ui/Avatar';
+import { Badge, BadgeText } from '@/components/ui/Badge';
+import { Button } from '@/components/ui/Button';
+import { HStack } from '@/components/ui/HStack';
+import { InputSearch } from '@/components/ui/InputSearch';
+import { Text } from '@/components/ui/Text';
+import { VStack } from '@/components/ui/VStack';
 
 type EmailData = {
 	id: string;
